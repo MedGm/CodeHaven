@@ -1,0 +1,280 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center space-x-3">
+      <div class="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
+        <svg class="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Create New Blog Post</h1>
+        <p class="text-gray-600 dark:text-gray-400">Share your knowledge and insights with the community</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Creation Form -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Title -->
+      <div>
+        <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Title *
+        </label>
+        <input
+          type="text"
+          id="title"
+          formControlName="title"
+          placeholder="Enter your blog post title..."
+          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+        />
+        <div *ngIf="blogForm.get('title')?.invalid && blogForm.get('title')?.touched" class="mt-1">
+          <p class="text-sm text-red-600 dark:text-red-400">Title is required (minimum 5 characters)</p>
+        </div>
+      </div>
+
+      <!-- Status and Reading Time Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Status
+          </label>
+          <select
+            id="status"
+            formControlName="status"
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          >
+            <option value="DRAFT">Draft</option>
+            <option value="PUBLISHED">Published</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="readingTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Reading Time (minutes)
+          </label>
+          <input
+            type="number"
+            id="readingTime"
+            formControlName="readingTime"
+            placeholder="e.g. 5"
+            min="1"
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          />
+        </div>
+      </div>
+
+      <!-- Excerpt -->
+      <div>
+        <label for="excerpt" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Excerpt (Optional)
+        </label>
+        <textarea
+          id="excerpt"
+          formControlName="excerpt"
+          rows="3"
+          placeholder="Brief description of your blog post..."
+          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+        ></textarea>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Maximum 500 characters</p>
+        <div *ngIf="blogForm.get('excerpt')?.invalid && blogForm.get('excerpt')?.touched" class="mt-1">
+          <p class="text-sm text-red-600 dark:text-red-400">Excerpt must not exceed 500 characters</p>
+        </div>
+      </div>
+
+      <!-- Cover Image URL -->
+      <div>
+        <label for="coverImageUrl" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Cover Image URL (Optional)
+        </label>
+        <input
+          type="url"
+          id="coverImageUrl"
+          formControlName="coverImageUrl"
+          placeholder="https://example.com/image.jpg"
+          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+        />
+      </div>
+
+      <!-- Tags -->
+      <div>
+        <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Tags (Optional)
+        </label>
+        <input
+          type="text"
+          id="tags"
+          formControlName="tags"
+          placeholder="Enter tags separated by commas (e.g., javascript, tutorial, frontend)"
+          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+        />
+      </div>
+
+      <!-- Content Editor with GitHub-style tabs -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Content *
+          </label>
+          <div class="flex items-center space-x-2">
+            <button
+              type="button"
+              (click)="activeEditorTab = 'write'"
+              [class]="activeEditorTab === 'write' ? 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white' : 'bg-gray-50 dark:bg-gray-800 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
+              class="px-3 py-1 text-sm font-medium border rounded-t-md transition-colors"
+            >
+              <svg class="h-4 w-4 mr-1.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+              </svg>
+              Write
+            </button>
+            <button
+              type="button"
+              (click)="activeEditorTab = 'preview'"
+              [class]="activeEditorTab === 'preview' ? 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white' : 'bg-gray-50 dark:bg-gray-800 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
+              class="px-3 py-1 text-sm font-medium border rounded-t-md transition-colors"
+            >
+              <svg class="h-4 w-4 mr-1.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              Preview
+            </button>
+          </div>
+        </div>
+        
+        <!-- Write Tab -->
+        <div *ngIf="activeEditorTab === 'write'" class="relative">
+          <textarea
+            id="content"
+            formControlName="content"
+            rows="20"
+            placeholder="Write your blog post content here... (Markdown supported)
+
+# Your Blog Title
+
+## Introduction
+Start with an engaging introduction...
+
+## Main Content
+Add your main content here. You can use:
+- **Bold text**
+- *Italic text*
+- `inline code`
+- [Links](https://example.com)
+
+```javascript
+// Code blocks
+function example() {
+  return 'Hello World!';
+}
+```
+
+## Conclusion
+Wrap up your thoughts..."
+            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white font-mono text-sm leading-6 resize-none"
+          ></textarea>
+          
+          <!-- Markdown Toolbar -->
+          <div class="absolute top-2 right-2 flex items-center space-x-1 bg-white dark:bg-gray-800 rounded-md shadow-sm border border-gray-200 dark:border-gray-600 p-1">
+            <button type="button" (click)="insertMarkdown('**', '**')" title="Bold" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12M6 8h12M6 16h12"/>
+              </svg>
+            </button>
+            <button type="button" (click)="insertMarkdown('*', '*')" title="Italic" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8l10 8M7 16l10-8"/>
+              </svg>
+            </button>
+            <button type="button" (click)="insertMarkdown('`', '`')" title="Code" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+            </button>
+            <button type="button" (click)="insertMarkdown('[', '](url)')" title="Link" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Preview Tab -->
+        <div *ngIf="activeEditorTab === 'preview'" class="border border-gray-300 dark:border-gray-600 rounded-lg">
+          <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600 rounded-t-lg">
+            <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">Preview</h3>
+          </div>
+          <div class="p-6 min-h-96 max-h-96 overflow-y-auto bg-white dark:bg-gray-800 rounded-b-lg">
+            <div *ngIf="!blogForm.get('content')?.value" class="text-center py-12 text-gray-500 dark:text-gray-400">
+              <svg class="mx-auto h-12 w-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              <p>Nothing to preview</p>
+              <p class="text-sm">Start writing in the Write tab to see a preview here.</p>
+            </div>
+            <div *ngIf="blogForm.get('content')?.value" class="prose prose-lg dark:prose-invert max-w-none" [innerHTML]="getMarkdownPreview()">
+            </div>
+          </div>
+        </div>
+        
+        <div *ngIf="blogForm.get('content')?.invalid && blogForm.get('content')?.touched" class="mt-1">
+          <p class="text-sm text-red-600 dark:text-red-400">Content is required (minimum 50 characters)</p>
+        </div>
+        
+        <!-- Markdown Help -->
+        <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          <span class="font-medium">Tip:</span> You can use Markdown for formatting. 
+          <a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener" class="text-blue-600 dark:text-blue-400 hover:underline">Learn Markdown syntax</a>
+        </div>
+      </div>
+
+      <!-- Featured Checkbox -->
+      <div class="flex items-center">
+        <input
+          id="isFeatured"
+          type="checkbox"
+          formControlName="isFeatured"
+          class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+        />
+        <label for="isFeatured" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+          Mark as featured post
+        </label>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end space-x-3">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          [disabled]="blogForm.invalid || isLoading"
+          class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+        >
+          <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          {{ isLoading ? 'Creating...' : 'Create Post' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-md p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <p class="ml-2 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+    </div>
+  </div>
+</div>

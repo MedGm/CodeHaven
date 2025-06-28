@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+/* Import highlight.js styles for syntax highlighting */
+@import "highlight.js/styles/github-dark.css";
+
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dark mode support */
+.dark {
+  color-scheme: dark;
+}
+
+/* Custom highlight.js theme adjustments for light/dark mode */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: transparent !important;
+}
+
+/* Light mode highlight.js adjustments */
+@media (prefers-color-scheme: light) {
+  .hljs {
+    color: #24292e;
+  }
+}
+
+/* Dark mode highlight.js adjustments */
+.dark .hljs {
+  color: #e6edf3;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}

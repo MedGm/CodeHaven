@@ -1,0 +1,111 @@
+<div class="max-w-6xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
+          <svg class="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">AI History</h1>
+          <p class="text-gray-600 dark:text-gray-400">Your previous AI interactions and results</p>
+        </div>
+      </div>
+      <button
+        routerLink="/ai"
+        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+      >
+        New AI Request
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="flex justify-center py-8">
+    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+  </div>
+
+  <!-- History Items -->
+  <div *ngIf="!isLoading" class="space-y-4">
+    <div *ngIf="historyItems.length === 0" class="text-center py-8">
+      <svg class="h-12 w-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white">No AI history yet</h3>
+      <p class="text-gray-600 dark:text-gray-400 mt-2">Start using AI features to build your history</p>
+    </div>
+
+    <div *ngFor="let item of historyItems" class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
+              {{ item.requestType }}
+            </span>
+            <span *ngIf="item.language" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+              {{ item.language }}
+            </span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">
+              {{ item.timestamp | date:'MMM dd, yyyy \'at\' HH:mm' }}
+            </span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button
+              (click)="copyToClipboard(item.response)"
+              class="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              title="Copy response"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+              </svg>
+            </button>
+            <button
+              (click)="deleteItem(item.id)"
+              class="p-1 text-gray-400 hover:text-red-600 dark:hover:text-red-400"
+              title="Delete item"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="px-6 py-4">
+        <div class="space-y-4">
+          <!-- Question -->
+          <div>
+            <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Request:</h4>
+            <p class="text-sm text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 p-4 rounded-lg border border-gray-300 dark:border-gray-600">{{ item.question }}</p>
+          </div>
+
+          <!-- Response -->
+          <div>
+            <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">AI Response:</h4>
+            <div class="text-sm text-gray-700 dark:text-gray-300">
+              <pre class="whitespace-pre-wrap text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-300 dark:border-gray-600 font-mono leading-relaxed shadow-inner">{{ item.response }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to AI Dashboard -->
+  <div class="text-center">
+    <button
+      routerLink="/ai"
+      class="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-md hover:bg-blue-100 dark:hover:bg-blue-900/40"
+    >
+      <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      Back to AI Dashboard
+    </button>
+  </div>
+</div>

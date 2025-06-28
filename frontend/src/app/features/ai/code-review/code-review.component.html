@@ -1,0 +1,220 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center">
+      <div class="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg mr-4">
+        <svg class="h-8 w-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">AI Code Review</h1>
+        <p class="text-gray-600 dark:text-gray-400">Get intelligent code reviews with suggestions for improvements</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Code Input Form -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Language Selection -->
+      <div>
+        <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Programming Language
+        </label>
+        <select
+          id="language"
+          formControlName="language"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        >
+          <option value="">Select a language</option>
+          <option value="javascript">JavaScript</option>
+          <option value="typescript">TypeScript</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="csharp">C#</option>
+          <option value="cpp">C++</option>
+          <option value="go">Go</option>
+          <option value="rust">Rust</option>
+          <option value="php">PHP</option>
+          <option value="ruby">Ruby</option>
+        </select>
+      </div>
+
+      <!-- Review Type -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Review Focus
+        </label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            reviewForm.get('reviewType')?.value === 'GENERAL' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : ''
+          ]">
+            <input type="radio" formControlName="reviewType" value="GENERAL" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">General</span>
+          </label>
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            reviewForm.get('reviewType')?.value === 'SECURITY' ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : ''
+          ]">
+            <input type="radio" formControlName="reviewType" value="SECURITY" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">Security</span>
+          </label>
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            reviewForm.get('reviewType')?.value === 'PERFORMANCE' ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : ''
+          ]">
+            <input type="radio" formControlName="reviewType" value="PERFORMANCE" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">Performance</span>
+          </label>
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            reviewForm.get('reviewType')?.value === 'BEST_PRACTICES' ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20' : ''
+          ]">
+            <input type="radio" formControlName="reviewType" value="BEST_PRACTICES" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">Best Practices</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Code Input -->
+      <div>
+        <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Code to Review
+        </label>
+        <textarea
+          id="code"
+          formControlName="code"
+          rows="12"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm"
+          placeholder="Paste your code here..."
+        ></textarea>
+        <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          Tip: Include relevant context or function signatures for better reviews
+        </div>
+      </div>
+
+      <!-- Context (Optional) -->
+      <div>
+        <label for="context" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Additional Context <span class="text-gray-500">(Optional)</span>
+        </label>
+        <textarea
+          id="context"
+          formControlName="context"
+          rows="3"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          placeholder="Describe the purpose, specific concerns, or what you'd like the AI to focus on..."
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="reviewForm.invalid || isLoading"
+          class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center"
+        >
+          <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          {{ isLoading ? 'Analyzing...' : 'Review Code' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Results -->
+  <div *ngIf="reviewResult" class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center mb-4">
+      <svg class="h-6 w-6 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Review Results</h2>
+    </div>
+    
+    <!-- Review Response Section -->
+    <div class="mb-6">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Code Review</h3>
+        <button
+          type="button"
+          (click)="copyToClipboard(getReviewResponse())"
+          class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          aria-label="Copy review to clipboard"
+          title="Copy review"
+        >
+          Copy Review
+        </button>
+      </div>
+      <div class="prose dark:prose-invert max-w-none">
+        <div class="text-sm text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-300 dark:border-gray-600 leading-relaxed whitespace-pre-wrap">{{ getReviewResponse() }}</div>
+      </div>
+    </div>
+
+    <!-- Issues Section -->
+    <div *ngIf="getIssues().length > 0" class="mb-4">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+        <svg class="inline h-5 w-5 text-red-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+        </svg>
+        Issues Found
+      </h3>
+      <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+        <ul class="list-disc pl-5 space-y-1 text-sm text-red-700 dark:text-red-300">
+          <li *ngFor="let issue of getIssues()">{{ issue }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Suggestions Section -->
+    <div *ngIf="getSuggestions().length > 0" class="mb-4">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+        <svg class="inline h-5 w-5 text-blue-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+        Suggestions
+      </h3>
+      <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+        <ul class="list-disc pl-5 space-y-1 text-sm text-blue-700 dark:text-blue-300">
+          <li *ngFor="let suggestion of getSuggestions()">{{ suggestion }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Confidence Score -->
+    <div *ngIf="getConfidenceScore() !== null" class="mb-4">
+      <div class="flex items-center">
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Confidence Score:</span>
+        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 mr-2">
+          <div 
+            class="bg-green-600 h-2 rounded-full transition-all duration-300" 
+            [style.width.%]="getConfidenceScore()"
+          ></div>
+        </div>
+        <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ getConfidenceScore() }}%</span>
+      </div>
+    </div>
+
+    <div class="mt-4 flex items-center justify-between">
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        Reviewed on {{ getFormattedDate() }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+      </svg>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-red-800 dark:text-red-200">Review Failed</h3>
+        <p class="mt-1 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>

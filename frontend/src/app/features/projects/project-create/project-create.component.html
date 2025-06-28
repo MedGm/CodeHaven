@@ -1,0 +1,161 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center space-x-3">
+      <div class="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
+        <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Create New Project</h1>
+        <p class="text-gray-600 dark:text-gray-400">Share your coding project with the community</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Creation Form -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Title -->
+      <div>
+        <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Project Title *
+        </label>
+        <input
+          id="title"
+          formControlName="title"
+          type="text"
+          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+          placeholder="Enter project title"
+        />
+        <div *ngIf="projectForm.get('title')?.invalid && projectForm.get('title')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+          <span *ngIf="projectForm.get('title')?.errors?.['required']">Title is required</span>
+          <span *ngIf="projectForm.get('title')?.errors?.['minlength']">Title must be at least 3 characters</span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Description *
+        </label>
+        <textarea
+          id="description"
+          formControlName="description"
+          rows="4"
+          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors resize-vertical"
+          placeholder="Describe your project..."
+        ></textarea>
+        <div *ngIf="projectForm.get('description')?.invalid && projectForm.get('description')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+          <span *ngIf="projectForm.get('description')?.errors?.['required']">Description is required</span>
+          <span *ngIf="projectForm.get('description')?.errors?.['minlength']">Description must be at least 10 characters</span>
+        </div>
+      </div>
+
+      <!-- Repository URL and Demo URL Row -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="repoUrl" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Repository URL (Optional)
+          </label>
+          <input
+            id="repoUrl"
+            formControlName="repoUrl"
+            type="url"
+            class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+            placeholder="https://github.com/username/repo"
+          />
+        </div>
+
+        <div>
+          <label for="demoUrl" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Demo URL (Optional)
+          </label>
+          <input
+            id="demoUrl"
+            formControlName="demoUrl"
+            type="url"
+            class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+            placeholder="https://yourproject.com"
+          />
+        </div>
+      </div>
+
+      <!-- Technologies -->
+      <div>
+        <label for="technologies" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Technologies (Optional)
+        </label>
+        <input
+          id="technologies"
+          formControlName="technologies"
+          type="text"
+          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+          placeholder="JavaScript, React, Node.js, MongoDB"
+        />
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Separate technologies with commas</p>
+      </div>
+
+      <!-- Tags -->
+      <div>
+        <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Tags (Optional)
+        </label>
+        <input
+          id="tags"
+          formControlName="tags"
+          type="text"
+          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+          placeholder="web-app, fullstack, portfolio"
+        />
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Separate tags with commas</p>
+      </div>
+
+      <!-- Public/Private Toggle -->
+      <div class="flex items-center">
+        <input
+          id="isPublic"
+          formControlName="isPublic"
+          type="checkbox"
+          class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700"
+        />
+        <label for="isPublic" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+          Make this project public
+        </label>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-end space-x-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <button
+          type="button"
+          (click)="onCancel()"
+          class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        >
+          Cancel
+        </button>
+        
+        <button
+          type="submit"
+          [disabled]="isLoading || projectForm.invalid"
+          class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          <span *ngIf="!isLoading">Create Project</span>
+          <span *ngIf="isLoading">Creating...</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+      </svg>
+      <div class="ml-3">
+        <p class="text-sm text-red-700 dark:text-red-400">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+</div>

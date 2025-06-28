@@ -1,0 +1,224 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center">
+      <div class="p-3 bg-red-100 dark:bg-red-900/20 rounded-lg mr-4">
+        <svg class="h-8 w-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">AI Bug Fix</h1>
+        <p class="text-gray-600 dark:text-gray-400">Get AI assistance to identify and fix bugs in your code</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bug Fix Form -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <form [formGroup]="bugFixForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Language Selection -->
+      <div>
+        <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Programming Language
+        </label>
+        <select
+          id="language"
+          formControlName="language"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        >
+          <option value="">Select a language</option>
+          <option value="javascript">JavaScript</option>
+          <option value="typescript">TypeScript</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="csharp">C#</option>
+          <option value="cpp">C++</option>
+          <option value="go">Go</option>
+          <option value="rust">Rust</option>
+          <option value="php">PHP</option>
+          <option value="ruby">Ruby</option>
+        </select>
+      </div>
+
+      <!-- Problematic Code -->
+      <div>
+        <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Problematic Code
+        </label>
+        <textarea
+          id="code"
+          formControlName="code"
+          rows="12"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm"
+          placeholder="Paste your problematic code here..."
+        ></textarea>
+        <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          Include the code that's causing issues or behaving unexpectedly
+        </div>
+      </div>
+
+      <!-- Error Description -->
+      <div>
+        <label for="errorDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Error Description
+        </label>
+        <textarea
+          id="errorDescription"
+          formControlName="errorDescription"
+          rows="4"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          placeholder="Describe the error, unexpected behavior, or what you expected to happen..."
+        ></textarea>
+      </div>
+
+      <!-- Expected Behavior -->
+      <div>
+        <label for="expectedBehavior" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Expected Behavior <span class="text-gray-500">(Optional)</span>
+        </label>
+        <textarea
+          id="expectedBehavior"
+          formControlName="expectedBehavior"
+          rows="3"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          placeholder="What should the code do instead?"
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="bugFixForm.invalid || isLoading"
+          class="px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center"
+        >
+          <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          {{ isLoading ? 'Analyzing...' : 'Fix Bug' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Results -->
+  <div *ngIf="fixResult" class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center mb-4">
+      <svg class="h-6 w-6 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Bug Fix Solution</h2>
+    </div>
+    
+    <!-- Fixed Code Section -->
+    <div *ngIf="getSuggestedCode()" class="mb-6">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Fixed Code</h3>
+        <button
+          type="button"
+          (click)="copyToClipboard(getSuggestedCode())"
+          class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          aria-label="Copy fixed code to clipboard"
+          title="Copy fixed code"
+        >
+          Copy Code
+        </button>
+      </div>
+      <pre class="whitespace-pre-wrap text-sm text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-300 dark:border-gray-600 font-mono leading-relaxed shadow-inner overflow-x-auto">{{ getSuggestedCode() }}</pre>
+    </div>
+
+    <!-- Explanation Section -->
+    <div class="mb-4">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Explanation</h3>
+        <button
+          type="button"
+          (click)="copyToClipboard(getExplanation())"
+          class="px-3 py-1 text-sm bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+          aria-label="Copy explanation to clipboard"
+          title="Copy explanation"
+        >
+          Copy Explanation
+        </button>
+      </div>
+      <div class="prose dark:prose-invert max-w-none">
+        <div class="text-sm text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-300 dark:border-gray-600 leading-relaxed whitespace-pre-wrap">{{ getExplanation() }}</div>
+      </div>
+    </div>
+
+    <!-- Suggestions Section -->
+    <div *ngIf="getSuggestions().length > 0" class="mb-4">
+      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Additional Suggestions</h3>
+      <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700 dark:text-gray-300">
+        <li *ngFor="let suggestion of getSuggestions()">{{ suggestion }}</li>
+      </ul>
+    </div>
+
+    <!-- Confidence Score -->
+    <div *ngIf="getConfidenceScore() !== null" class="mb-4">
+      <div class="flex items-center">
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Confidence Score:</span>
+        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 mr-2">
+          <div 
+            class="bg-green-600 h-2 rounded-full transition-all duration-300" 
+            [style.width.%]="getConfidenceScore()"
+          ></div>
+        </div>
+        <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ getConfidenceScore() }}%</span>
+      </div>
+    </div>
+
+    <div class="mt-4 flex items-center justify-between">
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        Generated on {{ getFormattedDate() }}
+      </div>
+      <div class="flex space-x-2">
+        <button
+          type="button"
+          (click)="applyFix()"
+          [disabled]="!getSuggestedCode()"
+          class="px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          aria-label="Apply bug fix to code"
+          title="Apply fix to code input"
+        >
+          Apply Fix
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+      </svg>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-red-800 dark:text-red-200">Bug Fix Failed</h3>
+        <p class="mt-1 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips Section -->
+  <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-blue-800 dark:text-blue-200">Tips for Better Bug Fixes</h3>
+        <div class="mt-2 text-sm text-blue-700 dark:text-blue-300">
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Include error messages or stack traces if available</li>
+            <li>Provide context about what the code is supposed to do</li>
+            <li>Include any relevant input data or test cases</li>
+            <li>Mention the environment or framework being used</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <!-- Navigation -->
+  <app-navbar></app-navbar>
+  
+  <div class="flex pt-16">
+    <!-- Sidebar -->
+    <app-sidebar class="hidden lg:block"></app-sidebar>
+    
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-64">
+      <div class="p-6">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Footer -->
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,189 @@
+<aside class="fixed left-0 top-16 w-64 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 overflow-y-auto">
+  <nav class="p-4 space-y-2">
+    <!-- Dashboard -->
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700 dark:border-blue-300"
+      class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+    >
+      <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"/>
+      </svg>
+      Dashboard
+    </a>
+
+    <!-- Projects -->
+    <div>
+      <a
+        routerLink="/projects"
+        routerLinkActive="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700 dark:border-blue-300"
+        class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+      >
+        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-4h.01M6 15h1m6 0h1m6 0h.01M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        Projects
+        <span class="ml-auto bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs">
+          {{ projectCount }}
+        </span>
+      </a>
+      <div class="ml-6 mt-1 space-y-1">
+        <a routerLink="/projects" [queryParams]="{filter: 'recent'}" class="block px-3 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+          Recent
+        </a>
+        <a routerLink="/projects" [queryParams]="{filter: 'starred'}" class="block px-3 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+          Starred
+        </a>
+      </div>
+    </div>
+
+    <!-- Blogs -->
+    <div>
+      <a
+        routerLink="/blogs"
+        routerLinkActive="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700 dark:border-blue-300"
+        class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+      >
+        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+        </svg>
+        Blogs
+        <span class="ml-auto bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs">
+          {{ blogCount }}
+        </span>
+      </a>
+      <div class="ml-6 mt-1 space-y-1">
+        <a routerLink="/blogs/create" class="block px-3 py-1 text-xs text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300">
+          + New Post
+        </a>
+        <a routerLink="/blogs" [queryParams]="{filter: 'drafts'}" class="block px-3 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+          Drafts
+        </a>
+      </div>
+    </div>
+
+    <!-- Code Snippets -->
+    <div>
+      <a
+        routerLink="/snippets"
+        routerLinkActive="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700 dark:border-blue-300"
+        class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+      >
+        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+        </svg>
+        Snippets
+        <span class="ml-auto bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-full text-xs">
+          {{ snippetCount }}
+        </span>
+      </a>
+      <div class="ml-6 mt-1 space-y-1">
+        <a routerLink="/snippets/create" class="block px-3 py-1 text-xs text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300">
+          + New Snippet
+        </a>
+        <a routerLink="/snippets" [queryParams]="{filter: 'public'}" class="block px-3 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+          Public
+        </a>
+        <a routerLink="/snippets" [queryParams]="{filter: 'private'}" class="block px-3 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+          Private
+        </a>
+      </div>
+    </div>
+
+    <!-- AI Assistant -->
+    <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+      <h3 class="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+        AI Tools
+      </h3>
+      <div class="mt-2 space-y-1">
+        <a
+          routerLink="/ai/code-review"
+          routerLinkActive="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-r-2 border-purple-700 dark:border-purple-300"
+          class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Code Review
+        </a>
+        
+        <a
+          routerLink="/ai/bug-fix"
+          routerLinkActive="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-r-2 border-purple-700 dark:border-purple-300"
+          class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+          </svg>
+          Bug Fix
+        </a>
+        
+        <a
+          routerLink="/ai/code-generation"
+          routerLinkActive="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-r-2 border-purple-700 dark:border-purple-300"
+          class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Generate Code
+        </a>
+        
+        <a
+          routerLink="/ai/optimize"
+          routerLinkActive="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-r-2 border-purple-700 dark:border-purple-300"
+          class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+          Optimize
+        </a>
+        
+        <a
+          routerLink="/ai/explain"
+          routerLinkActive="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border-r-2 border-purple-700 dark:border-purple-300"
+          class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        >
+          <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Explain Code
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+      <h3 class="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+        Quick Actions
+      </h3>
+      <div class="mt-2 space-y-1">
+        <button 
+          type="button"
+          routerLink="/projects/create"
+          class="w-full text-left flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Create new project"
+          title="Create new project">
+          <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+          </svg>
+          New Project
+        </button>
+        
+        <button 
+          type="button"
+          (click)="onImportProject()"
+          class="w-full text-left flex items-center px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Import existing project"
+          title="Import existing project">
+          <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
+          </svg>
+          Import Project
+        </button>
+      </div>
+    </div>
+  </nav>
+</aside>

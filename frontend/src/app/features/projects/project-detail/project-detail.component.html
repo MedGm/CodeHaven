@@ -1,0 +1,138 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="flex justify-center py-8">
+    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-md p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <p class="ml-2 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+    </div>
+  </div>
+
+  <!-- Project Details -->
+  <div *ngIf="project && !isLoading" class="space-y-6">
+    <!-- Header -->
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+      <div class="flex items-start justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ project.name }}</h1>
+          <p class="text-gray-600 dark:text-gray-400 mt-2">{{ project.description }}</p>
+          <div class="flex items-center space-x-4 mt-4 text-sm text-gray-500 dark:text-gray-400">
+            <span class="flex items-center">
+              <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>
+              </svg>
+              {{ project.technologies && project.technologies.length > 0 ? project.technologies[0] : 'No technology' }}
+            </span>
+            <span class="flex items-center">
+              <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              {{ project.isPublic ? 'Public' : 'Private' }}
+            </span>
+            <span>Created {{ project.createdAt | date:'MMM dd, yyyy' }}</span>
+          </div>
+        </div>
+        <div class="flex space-x-3">
+          <button
+            routerLink="."
+            class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            Edit
+          </button>
+          <a
+            *ngIf="project.repositoryUrl"
+            [href]="project.repositoryUrl"
+            target="_blank"
+            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+          >
+            View Repository
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Stats & Info -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Repository Info -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Repository Information</h2>
+          <div class="space-y-3">
+            <div class="flex justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Technologies:</span>
+              <span class="text-gray-900 dark:text-white">
+                {{ project.technologies && project.technologies.length > 0 ? project.technologies.join(', ') : 'None specified' }}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Visibility:</span>
+              <span class="text-gray-900 dark:text-white">{{ project.isPublic ? 'Public' : 'Private' }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Created:</span>
+              <span class="text-gray-900 dark:text-white">{{ project.createdAt | date:'MMM dd, yyyy' }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600 dark:text-gray-400">Last Updated:</span>
+              <span class="text-gray-900 dark:text-white">{{ project.updatedAt | date:'MMM dd, yyyy' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">About This Project</h2>
+          <p class="text-gray-700 dark:text-gray-300">{{ project.description }}</p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="space-y-6">
+        <!-- Quick Actions -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+          <div class="space-y-3">
+            <button 
+              type="button"
+              class="w-full px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
+              aria-label="Clone repository to local machine"
+              title="Clone repository">
+              Clone Repository
+            </button>
+            <button 
+              type="button"
+              class="w-full px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
+              aria-label="Download project as ZIP file"
+              title="Download ZIP">
+              Download ZIP
+            </button>
+            <button 
+              type="button"
+              class="w-full px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
+              aria-label="Report an issue with this project"
+              title="Report issue">
+              Report Issue
+            </button>
+          </div>
+        </div>
+
+        <!-- Back Navigation -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <button
+            routerLink="/projects"
+            class="w-full px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-md hover:bg-blue-100 dark:hover:bg-blue-900/40"
+          >
+            ← Back to Projects
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

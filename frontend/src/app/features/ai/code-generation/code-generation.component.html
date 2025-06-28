@@ -1,0 +1,201 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center">
+      <div class="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg mr-4">
+        <svg class="h-8 w-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">AI Code Generation</h1>
+        <p class="text-gray-600 dark:text-gray-400">Generate code from natural language descriptions</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Code Generation Form -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <form [formGroup]="generationForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Programming Language -->
+      <div>
+        <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Programming Language
+        </label>
+        <select
+          id="language"
+          formControlName="language"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+        >
+          <option value="">Select a language</option>
+          <option value="javascript">JavaScript</option>
+          <option value="typescript">TypeScript</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="csharp">C#</option>
+          <option value="cpp">C++</option>
+          <option value="go">Go</option>
+          <option value="rust">Rust</option>
+          <option value="php">PHP</option>
+          <option value="ruby">Ruby</option>
+        </select>
+      </div>
+
+      <!-- Code Type -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          What do you want to generate?
+        </label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            generationForm.get('codeType')?.value === 'FUNCTION' ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : ''
+          ]">
+            <input type="radio" formControlName="codeType" value="FUNCTION" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">Function</span>
+          </label>
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            generationForm.get('codeType')?.value === 'CLASS' ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : ''
+          ]">
+            <input type="radio" formControlName="codeType" value="CLASS" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">Class</span>
+          </label>
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            generationForm.get('codeType')?.value === 'API' ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : ''
+          ]">
+            <input type="radio" formControlName="codeType" value="API" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">API</span>
+          </label>
+          <label [ngClass]="[
+            'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+            generationForm.get('codeType')?.value === 'COMPONENT' ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : ''
+          ]">
+            <input type="radio" formControlName="codeType" value="COMPONENT" class="sr-only">
+            <span class="text-sm font-medium text-gray-900 dark:text-white">Component</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Description
+        </label>
+        <textarea
+          id="description"
+          formControlName="description"
+          rows="6"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          placeholder="Describe what you want the code to do. Be as specific as possible..."
+        ></textarea>
+        <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          Example: "Create a function that validates email addresses and returns true if valid"
+        </div>
+      </div>
+
+      <!-- Requirements (Optional) -->
+      <div>
+        <label for="requirements" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Specific Requirements <span class="text-gray-500">(Optional)</span>
+        </label>
+        <textarea
+          id="requirements"
+          formControlName="requirements"
+          rows="3"
+          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          placeholder="Any specific requirements, libraries to use, patterns to follow, etc..."
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="generationForm.invalid || isLoading"
+          class="px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center"
+        >
+          <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          {{ isLoading ? 'Generating...' : 'Generate Code' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Results -->
+  <div *ngIf="generatedCode" class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center mb-4">
+      <svg class="h-6 w-6 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Generated Code</h2>
+    </div>
+    
+    <div class="prose dark:prose-invert max-w-none">
+      <pre class="whitespace-pre-wrap text-sm text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-300 dark:border-gray-600 font-mono leading-relaxed shadow-inner">{{ getDisplayedCode() }}</pre>
+    </div>
+
+    <div class="mt-4 flex items-center justify-between">
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        Generated on {{ getFormattedDate() }}
+      </div>
+      <div class="flex space-x-2">
+        <button
+          type="button"
+          (click)="copyToClipboard(getDisplayedCode())"
+          class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+          aria-label="Copy generated code to clipboard"
+          title="Copy to clipboard"
+        >
+          Copy Code
+        </button>
+        <button
+          type="button"
+          (click)="saveAsSnippet()"
+          class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          aria-label="Save generated code as snippet"
+          title="Save as snippet"
+        >
+          Save as Snippet
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+      </svg>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-red-800 dark:text-red-200">Generation Failed</h3>
+        <p class="mt-1 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips Section -->
+  <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <div class="ml-3">
+        <h3 class="text-sm font-medium text-blue-800 dark:text-blue-200">Tips for Better Code Generation</h3>
+        <div class="mt-2 text-sm text-blue-700 dark:text-blue-300">
+          <ul class="list-disc pl-5 space-y-1">
+            <li>Be specific about input and output parameters</li>
+            <li>Mention any libraries or frameworks to use</li>
+            <li>Include edge cases or error handling requirements</li>
+            <li>Specify coding style or patterns to follow</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

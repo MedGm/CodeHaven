@@ -1,0 +1,118 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center space-x-3">
+      <div class="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
+        <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Code Explanation</h1>
+        <p class="text-gray-600 dark:text-gray-400">Get detailed explanations of your code with AI assistance</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Code Explanation Form -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <form [formGroup]="explainForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Language Selection -->
+      <div>
+        <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Programming Language
+        </label>
+        <select
+          id="language"
+          formControlName="language"
+          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+        >
+          <option *ngFor="let lang of languages" [value]="lang">{{ lang }}</option>
+        </select>
+      </div>
+
+      <!-- Explanation Level -->
+      <div>
+        <label for="explainLevel" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Explanation Level
+        </label>
+        <select
+          id="explainLevel"
+          formControlName="explainLevel"
+          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+        >
+          <option value="BEGINNER">Beginner - Simple explanations</option>
+          <option value="INTERMEDIATE">Intermediate - Moderate detail</option>
+          <option value="ADVANCED">Advanced - Technical details</option>
+        </select>
+      </div>
+
+      <!-- Code Input -->
+      <div>
+        <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Code to Explain
+        </label>
+        <textarea
+          id="code"
+          formControlName="code"
+          rows="15"
+          placeholder="Paste your code here..."
+          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white font-mono text-sm"
+        ></textarea>
+        <div *ngIf="explainForm.get('code')?.invalid && explainForm.get('code')?.touched" class="mt-1">
+          <p class="text-sm text-red-600 dark:text-red-400">Code is required (minimum 10 characters)</p>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="explainForm.invalid || isLoading"
+          class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+        >
+          <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          {{ isLoading ? 'Explaining...' : 'Explain Code' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-md p-4">
+    <div class="flex">
+      <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <p class="ml-2 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div *ngIf="explanation" class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Code Explanation</h2>
+      <button
+        type="button"
+        (click)="copyToClipboard(explanation.response)"
+        class="px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-700"
+        aria-label="Copy code explanation to clipboard"
+        title="Copy to clipboard"
+      >
+        Copy
+      </button>
+    </div>
+    <div class="prose dark:prose-invert max-w-none">
+      <pre class="whitespace-pre-wrap text-sm text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 p-6 rounded-lg border border-gray-300 dark:border-gray-600 font-mono leading-relaxed shadow-inner">{{ explanation.response }}</pre>
+    </div>
+    
+    <div class="mt-4 flex items-center justify-between">
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        Explained on {{ getFormattedDate() }}
+      </div>
+    </div>
+  </div>
+</div>
