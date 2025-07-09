@@ -1,54 +1,57 @@
-# CodeHaven 🚀
+# CodeHaven 
+
+![Screenshot from 2025-07-10 00-44-31](https://github.com/user-attachments/assets/9f8c7220-e24b-4c1d-aa2d-df665f110bec)
+
 
 **CodeHaven** is a comprehensive web application designed for developers to manage their coding projects, share code snippets, write technical blogs, and leverage AI-powered development tools. Built with modern technologies and featuring a robust notification system and dynamic user profiles.
 
-## 🌟 Features
+##  Features
 
-### 📁 Project Management
+### Project Management
 - Create, organize, and manage coding projects
 - Star favorite projects for quick access
 - Filter projects by recent activity or starred status
 - Project image uploads and file management
 
-### 📝 Technical Blogging
+### Technical Blogging
 - Create and publish technical blog posts
 - Draft management system
 - Rich text editing capabilities
 - Blog categorization and tagging
 
-### 💻 Code Snippets
+### Code Snippets
 - Share code snippets with the community
 - Public and private snippet management
 - Syntax highlighting support
 - Language-specific categorization
 
-### 🤖 AI-Powered Tools
+### AI-Powered Tools
 - **Code Review**: AI-powered code analysis and suggestions
 - **Bug Fix**: Intelligent bug detection and fixing recommendations
 - **Code Generation**: Generate code from natural language descriptions
 - **Code Optimization**: Performance and efficiency improvements
 - **Code Explanation**: Detailed explanations of complex code
 
-### 👤 User Management
+### User Management
 - Secure user authentication with JWT
 - Dynamic user profiles with avatar support
 - Real-time profile updates across the application
 - GitHub username integration
 
-### 🔔 Notification System
+### Notification System
 - Real-time notifications for user activities
 - Welcome notifications for new users
 - Sample notifications for enhanced user experience
 - Notification management (mark as read, delete)
 
-### 🎨 Modern UI/UX
+### Modern UI/UX
 - Dark/Light theme toggle
 - Responsive design for all devices
 - GitHub-inspired interface
 - Smooth animations and transitions
 - Mobile-friendly sidebar navigation
 
-## 🏗️ Architecture
+## Architecture
 
 ### Frontend (Angular 19)
 - **Framework**: Angular 19.2.0 with TypeScript
@@ -67,7 +70,7 @@
 - **Validation**: Bean Validation (JSR-380)
 - **Testing**: JUnit 5 with Spring Boot Test
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 CodeHaven/
@@ -115,7 +118,7 @@ CodeHaven/
     └── pom.xml
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Node.js** 18+ and npm
@@ -179,7 +182,7 @@ CodeHaven/
 
 4. Open your browser and navigate to `http://localhost:4200`
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -211,7 +214,7 @@ spring.redis.host=localhost
 spring.redis.port=6379
 ```
 
-## 🎯 Key Features Implementation
+## Key Features Implementation
 
 ### Dynamic Avatar System
 - **Frontend**: Real-time avatar updates across all components after profile changes
@@ -233,7 +236,7 @@ spring.redis.port=6379
 - **Security**: Path variable-based file serving with proper access control
 - **Storage**: Organized file structure for different content types
 
-## 🧪 Testing
+## Testing
 
 ### Frontend Testing
 ```bash
@@ -247,7 +250,7 @@ cd backend
 ./mvnw test
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Frontend Build
 ```bash
@@ -286,7 +289,7 @@ cd backend
 - **VS Code**: Recommended IDE with extensions
 - **Postman**: API testing and documentation
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -294,21 +297,10 @@ cd backend
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+##  Authors
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-- **Development Team** - *Initial work and ongoing development*
-
-## 🙏 Acknowledgments
-
-- Angular team for the excellent framework
-- Spring Boot team for the robust backend framework
-- Tailwind CSS for the amazing utility-first CSS framework
-- All open-source contributors who made this project possible
+- Me
 
 ---
 
-**CodeHaven** - *Empowering developers with modern tools and AI assistance* 🚀
+**CodeHaven** - *Empowering developers with modern tools and AI assistance*
