@@ -32,11 +32,51 @@ export class NotificationService {
 
   constructor(private http: HttpClient) {
     // Initialize with mock data immediately
+    this.initializeNotifications();
+  }
+
+  private initializeNotifications() {
+    console.log('Initializing notifications');
+    // Set mock data first as fallback
     this.notificationsSubject.next(this.getMockNotifications());
     this.unreadCountSubject.next(this.getMockUnreadCount());
     
-    // Try to load real data in background
-    this.loadUnreadCount();
+    // Try to load real data in the background (but don't let failures clear mock data)
+    this.tryLoadRealData();
+  }
+
+  // Method to reinitialize notifications (call this after auth changes)
+  public reinitialize() {
+    console.log('Reinitializing notification service');
+    this.initializeNotifications();
+  }
+
+  // Try to load real data but preserve mock data on failure
+  private tryLoadRealData(): void {
+    // Try to load real unread count
+    this.getUnreadCount().subscribe({
+      next: (response) => {
+        console.log('Loaded real unread count:', response.count);
+        this.unreadCountSubject.next(response.count);
+      },
+      error: (error) => {
+        console.error('Error loading unread notification count, keeping mock data:', error);
+        // Don't clear mock data, just log the error
+      }
+    });
+
+    // Try to load real notifications
+    this.getNotifications(0, 50).subscribe({
+      next: (response) => {
+        console.log('Loaded real notifications:', response.notifications.length);
+        this.notificationsSubject.next(response.notifications);
+        this.unreadCountSubject.next(response.unreadCount);
+      },
+      error: (error) => {
+        console.error('Error loading notifications, keeping mock data:', error);
+        // Don't clear mock data, just log the error
+      }
+    });
   }
 
   getNotifications(page = 0, size = 10): Observable<NotificationResponse> {
@@ -67,45 +107,76 @@ export class NotificationService {
   private loadUnreadCount(): void {
     this.getUnreadCount().subscribe({
       next: (response) => {
+        console.log('Loaded real unread count:', response.count);
         this.unreadCountSubject.next(response.count);
       },
       error: (error) => {
         console.error('Error loading unread notification count:', error);
-        // Fall back to mock data if backend is not available
-        this.unreadCountSubject.next(this.getMockUnreadCount());
+        // Only clear notifications if this is a deliberate API call, not during initialization
+        // For initialization, use tryLoadRealData() instead
+        if (error.status === 401 || error.status === 403) {
+          console.log('Auth error in loadUnreadCount, clearing notifications');
+          this.unreadCountSubject.next(0);
+        } else {
+          // Other error, use mock data
+          console.log('Other error in loadUnreadCount, using mock data');
+          this.unreadCountSubject.next(this.getMockUnreadCount());
+        }
       }
     });
   }
 
   // Method to refresh unread count (call after marking as read)
   refreshUnreadCount(): void {
-    this.loadUnreadCount();
+    // Use the safe method that doesn't clear notifications on error
+    this.getUnreadCount().subscribe({
+      next: (response) => {
+        console.log('Refreshed unread count:', response.count);
+        this.unreadCountSubject.next(response.count);
+      },
+      error: (error) => {
+        console.error('Error refreshing unread count, keeping current value:', error);
+        // Don't change the current count on error
+      }
+    });
   }
 
   // Load notifications for display
   loadNotifications(): void {
     this.getNotifications(0, 50).subscribe({
       next: (response) => {
+        console.log('Loaded real notifications:', response.notifications.length);
         this.notificationsSubject.next(response.notifications);
         this.unreadCountSubject.next(response.unreadCount);
       },
       error: (error) => {
-        console.error('Error loading notifications, using mock data:', error);
-        // Always ensure mock data is available if backend fails
-        this.notificationsSubject.next(this.getMockNotifications());
-        this.unreadCountSubject.next(this.getMockUnreadCount());
+        console.error('Error loading notifications:', error);
+        // Only clear notifications if this is a deliberate API call, not during initialization
+        // For initialization, use tryLoadRealData() instead
+        if (error.status === 401 || error.status === 403) {
+          console.log('Auth error in loadNotifications, clearing notifications');
+          this.notificationsSubject.next([]);
+          this.unreadCountSubject.next(0);
+        } else {
+          // Other error, use mock data
+          console.log('Other error in loadNotifications, using mock notifications');
+          this.notificationsSubject.next(this.getMockNotifications());
+          this.unreadCountSubject.next(this.getMockUnreadCount());
+        }
       }
     });
   }
 
   // Ensure notifications are always available (either real or mock)
   ensureNotificationsLoaded(): void {
-    if (this.notificationsSubject.value.length === 0) {
+    const currentNotifications = this.notificationsSubject.value;
+    if (currentNotifications.length === 0) {
+      // Set mock data first
       this.notificationsSubject.next(this.getMockNotifications());
       this.unreadCountSubject.next(this.getMockUnreadCount());
     }
-    // Try to load real notifications in background
-    this.loadNotifications();
+    // Try to load real notifications in background without affecting current state
+    this.tryLoadRealData();
   }
 
   // Mock notifications for development (remove in production)
@@ -147,5 +218,12 @@ export class NotificationService {
   // Get unread count from mock data
   getMockUnreadCount(): number {
     return this.getMockNotifications().filter(n => !n.isRead).length;
+  }
+
+  // Debug method to check current state
+  debugCurrentState(): void {
+    console.log('Current notifications:', this.notificationsSubject.value.length);
+    console.log('Current unread count:', this.unreadCountSubject.value);
+    console.log('Mock notifications:', this.getMockNotifications().length);
   }
 }

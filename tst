@@ -1,0 +1,6 @@
+         conname          |                                                                                                                                                                pg_get_constraintdef                                                                                                                                                                
+--------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ ai_requests_status_check | CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'PROCESSING'::character varying, 'COMPLETED'::character varying, 'FAILED'::character varying])::text[])))
+ ai_requests_type_check   | CHECK (((type)::text = ANY ((ARRAY['CODE_REVIEW'::character varying, 'BUG_FIX'::character varying, 'CODE_OPTIMIZATION'::character varying, 'EXPLANATION'::character varying, 'DOCUMENTATION'::character varying, 'TAG_SUGGESTION'::character varying, 'UNIT_TEST_GENERATION'::character varying, 'CODE_GENERATION'::character varying])::text[])))
+(2 rows)
+

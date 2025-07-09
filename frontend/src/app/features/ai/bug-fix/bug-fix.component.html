@@ -1,31 +1,33 @@
-<div class="max-w-4xl mx-auto space-y-6">
+<div class="max-w-5xl mx-auto space-y-6 p-4">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+  <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
     <div class="flex items-center">
-      <div class="p-3 bg-red-100 dark:bg-red-900/20 rounded-lg mr-4">
-        <svg class="h-8 w-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex-shrink-0 p-3 bg-gradient-to-br from-[#da3633] to-[#fd7f6f] rounded-lg mr-4">
+        <svg class="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
         </svg>
       </div>
       <div>
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">AI Bug Fix</h1>
-        <p class="text-gray-600 dark:text-gray-400">Get AI assistance to identify and fix bugs in your code</p>
+        <h1 class="text-2xl font-bold text-[#e6edf3] mb-1">AI Bug Fix</h1>
+        <p class="text-[#7d8590]">Get AI assistance to identify and fix bugs in your code</p>
       </div>
     </div>
   </div>
 
   <!-- Bug Fix Form -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <form [formGroup]="bugFixForm" (ngSubmit)="onSubmit()" class="space-y-4">
+  <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
+    <form [formGroup]="bugFixForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <!-- Language Selection -->
       <div>
-        <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="language" class="block text-sm font-semibold text-[#e6edf3] mb-2">
           Programming Language
         </label>
         <select
           id="language"
           formControlName="language"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          class="block w-full px-4 py-3 bg-[#21262d] border border-[#30363d] rounded-lg 
+                 text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 
+                 focus:ring-[#da3633] focus:border-[#da3633] transition-colors duration-200"
         >
           <option value="">Select a language</option>
           <option value="javascript">JavaScript</option>
@@ -43,45 +45,54 @@
 
       <!-- Problematic Code -->
       <div>
-        <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="code" class="block text-sm font-semibold text-[#e6edf3] mb-2">
           Problematic Code
         </label>
         <textarea
           id="code"
           formControlName="code"
           rows="12"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm"
+          class="block w-full px-4 py-3 bg-[#21262d] border border-[#30363d] rounded-lg 
+                 text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 
+                 focus:ring-[#da3633] focus:border-[#da3633] transition-colors duration-200
+                 font-mono text-sm resize-vertical"
           placeholder="Paste your problematic code here..."
         ></textarea>
-        <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+        <div class="mt-2 text-xs text-[#7d8590]">
           Include the code that's causing issues or behaving unexpectedly
         </div>
       </div>
 
       <!-- Error Description -->
       <div>
-        <label for="errorDescription" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="errorDescription" class="block text-sm font-semibold text-[#e6edf3] mb-2">
           Error Description
         </label>
         <textarea
           id="errorDescription"
           formControlName="errorDescription"
           rows="4"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          class="block w-full px-4 py-3 bg-[#21262d] border border-[#30363d] rounded-lg 
+                 text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 
+                 focus:ring-[#da3633] focus:border-[#da3633] transition-colors duration-200
+                 resize-vertical"
           placeholder="Describe the error, unexpected behavior, or what you expected to happen..."
         ></textarea>
       </div>
 
       <!-- Expected Behavior -->
       <div>
-        <label for="expectedBehavior" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Expected Behavior <span class="text-gray-500">(Optional)</span>
+        <label for="expectedBehavior" class="block text-sm font-semibold text-[#e6edf3] mb-2">
+          Expected Behavior <span class="text-[#7d8590] font-normal">(Optional)</span>
         </label>
         <textarea
           id="expectedBehavior"
           formControlName="expectedBehavior"
           rows="3"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          class="block w-full px-4 py-3 bg-[#21262d] border border-[#30363d] rounded-lg 
+                 text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 
+                 focus:ring-[#da3633] focus:border-[#da3633] transition-colors duration-200
+                 resize-vertical"
           placeholder="What should the code do instead?"
         ></textarea>
       </div>
@@ -91,7 +102,9 @@
         <button
           type="submit"
           [disabled]="bugFixForm.invalid || isLoading"
-          class="px-6 py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center"
+          class="inline-flex items-center px-6 py-3 bg-[#da3633] hover:bg-[#b02a29] 
+                 disabled:bg-[#656d76] disabled:cursor-not-allowed text-white font-semibold 
+                 rounded-lg transition-colors duration-200 shadow-sm"
         >
           <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -104,120 +117,165 @@
   </div>
 
   <!-- Results -->
-  <div *ngIf="fixResult" class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <div class="flex items-center mb-4">
-      <svg class="h-6 w-6 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Bug Fix Solution</h2>
+  <div *ngIf="fixResult" class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
+    <div class="flex items-center mb-6">
+      <div class="flex-shrink-0 p-2 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-lg mr-3">
+        <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <h2 class="text-xl font-bold text-[#e6edf3]">Bug Fix Solution</h2>
     </div>
     
     <!-- Fixed Code Section -->
     <div *ngIf="getSuggestedCode()" class="mb-6">
-      <div class="flex items-center justify-between mb-2">
-        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Fixed Code</h3>
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-[#e6edf3]">Fixed Code</h3>
         <button
           type="button"
           (click)="copyToClipboard(getSuggestedCode())"
-          class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          class="inline-flex items-center px-3 py-1.5 text-sm bg-[#2563eb] hover:bg-[#1d4ed8] 
+                 text-white rounded-lg transition-colors duration-200 shadow-sm"
           aria-label="Copy fixed code to clipboard"
           title="Copy fixed code"
         >
+          <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
           Copy Code
         </button>
       </div>
-      <pre class="whitespace-pre-wrap text-sm text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-300 dark:border-gray-600 font-mono leading-relaxed shadow-inner overflow-x-auto">{{ getSuggestedCode() }}</pre>
+      <div class="bg-[#161b22] border border-[#30363d] rounded-lg p-4 overflow-x-auto">
+        <pre class="text-sm text-[#e6edf3] font-mono leading-relaxed whitespace-pre-wrap">{{ getSuggestedCode() }}</pre>
+      </div>
     </div>
 
     <!-- Explanation Section -->
-    <div class="mb-4">
-      <div class="flex items-center justify-between mb-2">
-        <h3 class="text-lg font-medium text-gray-900 dark:text-white">Explanation</h3>
+    <div class="mb-6">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold text-[#e6edf3]">Explanation</h3>
         <button
           type="button"
           (click)="copyToClipboard(getExplanation())"
-          class="px-3 py-1 text-sm bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+          class="inline-flex items-center px-3 py-1.5 text-sm bg-[#656d76] hover:bg-[#7d8590] 
+                 text-white rounded-lg transition-colors duration-200 shadow-sm"
           aria-label="Copy explanation to clipboard"
           title="Copy explanation"
         >
-          Copy Explanation
+          <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          Copy
         </button>
       </div>
-      <div class="prose dark:prose-invert max-w-none">
-        <div class="text-sm text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 p-4 rounded-lg border border-gray-300 dark:border-gray-600 leading-relaxed whitespace-pre-wrap">{{ getExplanation() }}</div>
+      <div class="bg-[#21262d] border border-[#30363d] rounded-lg p-4">
+        <div class="text-sm text-[#e6edf3] leading-relaxed whitespace-pre-wrap">{{ getExplanation() }}</div>
       </div>
     </div>
 
     <!-- Suggestions Section -->
-    <div *ngIf="getSuggestions().length > 0" class="mb-4">
-      <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">Additional Suggestions</h3>
-      <ul class="list-disc pl-5 space-y-1 text-sm text-gray-700 dark:text-gray-300">
-        <li *ngFor="let suggestion of getSuggestions()">{{ suggestion }}</li>
-      </ul>
+    <div *ngIf="getSuggestions().length > 0" class="mb-6">
+      <h3 class="text-lg font-semibold text-[#e6edf3] mb-3">Additional Suggestions</h3>
+      <div class="bg-[#21262d] border border-[#30363d] rounded-lg p-4">
+        <ul class="space-y-2">
+          <li *ngFor="let suggestion of getSuggestions()" class="flex items-start">
+            <svg class="h-4 w-4 text-[#7c3aed] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-sm text-[#e6edf3]">{{ suggestion }}</span>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Confidence Score -->
-    <div *ngIf="getConfidenceScore() !== null" class="mb-4">
-      <div class="flex items-center">
-        <span class="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Confidence Score:</span>
-        <div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 mr-2">
-          <div 
-            class="bg-green-600 h-2 rounded-full transition-all duration-300" 
-            [style.width.%]="getConfidenceScore()"
-          ></div>
-        </div>
-        <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ getConfidenceScore() }}%</span>
+    <div *ngIf="getConfidenceScore() !== null" class="mb-6">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-semibold text-[#e6edf3]">Confidence Score</span>
+        <span class="text-sm font-bold text-[#e6edf3]">{{ getConfidenceScore() }}%</span>
+      </div>
+      <div class="w-full bg-[#21262d] rounded-full h-2 border border-[#30363d]">
+        <div 
+          class="bg-gradient-to-r from-[#10b981] to-[#059669] h-2 rounded-full transition-all duration-500" 
+          [style.width.%]="getConfidenceScore()"
+        ></div>
       </div>
     </div>
 
-    <div class="mt-4 flex items-center justify-between">
-      <div class="text-sm text-gray-500 dark:text-gray-400">
+    <!-- Actions -->
+    <div class="flex items-center justify-between pt-4 border-t border-[#30363d]">
+      <div class="text-sm text-[#7d8590]">
         Generated on {{ getFormattedDate() }}
       </div>
-      <div class="flex space-x-2">
-        <button
-          type="button"
-          (click)="applyFix()"
-          [disabled]="!getSuggestedCode()"
-          class="px-4 py-2 text-sm bg-green-600 text-white rounded hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          aria-label="Apply bug fix to code"
-          title="Apply fix to code input"
-        >
-          Apply Fix
-        </button>
-      </div>
+      <button
+        type="button"
+        (click)="applyFix()"
+        [disabled]="!getSuggestedCode()"
+        class="inline-flex items-center px-4 py-2 bg-[#10b981] hover:bg-[#059669] 
+               disabled:bg-[#656d76] disabled:cursor-not-allowed text-white font-semibold 
+               rounded-lg transition-colors duration-200 shadow-sm"
+        aria-label="Apply bug fix to code"
+        title="Apply fix to code input"
+      >
+        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+        Apply Fix
+      </button>
     </div>
   </div>
 
   <!-- Error State -->
-  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+  <div *ngIf="errorMessage" class="bg-red-950/30 border border-red-800/50 rounded-lg p-5">
     <div class="flex">
-      <svg class="h-5 w-5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
-      </svg>
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+        </svg>
+      </div>
       <div class="ml-3">
-        <h3 class="text-sm font-medium text-red-800 dark:text-red-200">Bug Fix Failed</h3>
-        <p class="mt-1 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+        <h3 class="text-sm font-semibold text-red-200">Bug Fix Failed</h3>
+        <p class="mt-1 text-sm text-red-300">{{ errorMessage }}</p>
       </div>
     </div>
   </div>
 
   <!-- Tips Section -->
-  <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+  <div class="bg-blue-950/30 border border-blue-800/50 rounded-lg p-5">
     <div class="flex">
-      <svg class="h-5 w-5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
+      <div class="flex-shrink-0">
+        <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
       <div class="ml-3">
-        <h3 class="text-sm font-medium text-blue-800 dark:text-blue-200">Tips for Better Bug Fixes</h3>
-        <div class="mt-2 text-sm text-blue-700 dark:text-blue-300">
-          <ul class="list-disc pl-5 space-y-1">
-            <li>Include error messages or stack traces if available</li>
-            <li>Provide context about what the code is supposed to do</li>
-            <li>Include any relevant input data or test cases</li>
-            <li>Mention the environment or framework being used</li>
-          </ul>
-        </div>
+        <h3 class="text-sm font-semibold text-blue-200 mb-2">Tips for Better Bug Fixes</h3>
+        <ul class="space-y-1.5 text-sm text-blue-300">
+          <li class="flex items-start">
+            <svg class="h-4 w-4 text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Include error messages or stack traces if available
+          </li>
+          <li class="flex items-start">
+            <svg class="h-4 w-4 text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Provide context about what the code is supposed to do
+          </li>
+          <li class="flex items-start">
+            <svg class="h-4 w-4 text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Include any relevant input data or test cases
+          </li>
+          <li class="flex items-start">
+            <svg class="h-4 w-4 text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+            Mention the environment or framework being used
+          </li>
+        </ul>
       </div>
     </div>
   </div>

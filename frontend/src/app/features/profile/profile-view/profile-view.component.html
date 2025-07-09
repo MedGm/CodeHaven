@@ -1,214 +1,258 @@
-<div class="max-w-4xl mx-auto space-y-6">
+<div class="max-w-5xl mx-auto space-y-6 p-4">
   <!-- Loading State -->
   <div *ngIf="isLoading" class="flex justify-center items-center min-h-96">
-    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+    <div class="flex items-center space-x-3">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563eb]"></div>
+      <span class="text-[#7d8590] font-medium">Loading profile...</span>
+    </div>
   </div>
 
   <!-- Profile Content -->
   <div *ngIf="!isLoading && user" class="space-y-6">
     <!-- Profile Header -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <div class="flex items-start space-x-6">
-      <!-- Avatar -->
-      <div class="flex-shrink-0">
-        <img 
-          [src]="user.avatar || '/assets/default-avatar.png'" 
-          [alt]="user.username + ' profile picture'"
-          class="h-24 w-24 rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-lg"
-        />
-      </div>
-      
-      <!-- User Info -->
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ user.username || 'User' }}</h1>
-            <p class="text-gray-600 dark:text-gray-400">{{ user.email }}</p>
-            <div class="flex items-center mt-2 space-x-4 text-sm text-gray-500 dark:text-gray-400">
-              <span class="flex items-center">
-                <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m3 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2z"/>
+    <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-8 shadow-sm">
+      <div class="flex items-start space-x-8">
+        <!-- Avatar -->
+        <div class="flex-shrink-0">
+          <div class="relative">
+            <img 
+              [src]="user.avatar || '/assets/default-avatar.png'" 
+              [alt]="user.username + ' profile picture'"
+              class="h-32 w-32 rounded-full object-cover border-4 border-[#30363d] shadow-lg"
+            />
+            <div class="absolute -bottom-2 -right-2 h-8 w-8 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-full border-4 border-[#0d1117] flex items-center justify-center">
+              <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <!-- User Info -->
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h1 class="text-3xl font-bold text-[#e6edf3] mb-1">{{ user.username || 'User' }}</h1>
+              <p class="text-[#7d8590] text-lg mb-3">{{ user.email }}</p>
+              
+              <!-- Stats Row -->
+              <div class="flex items-center space-x-6 mb-4">
+                <div class="flex items-center space-x-2 text-sm">
+                  <div class="h-3 w-3 bg-gradient-to-br from-[#7c3aed] to-[#2563eb] rounded-full"></div>
+                  <span class="text-[#e6edf3] font-medium">{{ user.role || 'USER' }}</span>
+                </div>
+                <div class="flex items-center space-x-2 text-sm text-[#7d8590]">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                  </svg>
+                  <span>Joined {{ user.joinDate | date:'MMM yyyy' }}</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="flex space-x-3">
+              <button
+                routerLink="/profile/edit"
+                class="inline-flex items-center px-4 py-2.5 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] 
+                       text-[#e6edf3] rounded-lg font-medium transition-colors duration-200 shadow-sm"
+              >
+                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                 </svg>
-                {{ user.role || 'USER' }}
-              </span>
-              <span class="flex items-center">
-                <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m3 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2z"/>
+                Edit Profile
+              </button>
+              <button
+                routerLink="/profile/settings"
+                class="inline-flex items-center px-4 py-2.5 bg-[#2563eb] hover:bg-[#1d4ed8] 
+                       text-white rounded-lg font-medium transition-colors duration-200 shadow-sm"
+              >
+                <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                Joined {{ user.joinDate | date:'MMM yyyy' }}
-              </span>
+                Settings
+              </button>
             </div>
           </div>
           
-          <!-- Action Buttons -->
-          <div class="flex space-x-3">
-            <button
-              routerLink="/profile/edit"
-              class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          <!-- Bio -->
+          <div class="mt-6">
+            <p class="text-[#e6edf3] leading-relaxed">{{ user.bio || 'No bio available' }}</p>
+          </div>
+          
+          <!-- GitHub Link -->
+          <div *ngIf="user.githubUsername" class="mt-4">
+            <a 
+              [href]="'https://github.com/' + user.githubUsername" 
+              target="_blank"
+              class="inline-flex items-center text-sm text-[#58a6ff] hover:text-[#79c0ff] transition-colors"
             >
-              Edit Profile
-            </button>
-            <button
-              routerLink="/profile/settings"
-              class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              Settings
-            </button>
+              <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              {{ '@' + user.githubUsername }}
+            </a>
           </div>
         </div>
-        
-        <!-- Bio -->
-        <div class="mt-4">
-          <p class="text-gray-700 dark:text-gray-300">{{ user.bio || 'No bio available' }}</p>
-        </div>
-        
-        <!-- GitHub Link -->
-        <div *ngIf="user.githubUsername" class="mt-3">
-          <a 
-            [href]="'https://github.com/' + user.githubUsername" 
-            target="_blank"
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
-          >
-            <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            {{ user.githubUsername }}
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stats Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-      <div class="flex items-center">
-        <div class="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-          </svg>
-        </div>
-        <div class="ml-4">
-          <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ stats?.totalProjects || 0 }}</p>
-          <p class="text-gray-600 dark:text-gray-400">Projects</p>
-        </div>
       </div>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-      <div class="flex items-center">
-        <div class="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
-        </div>
-        <div class="ml-4">
-          <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ stats?.totalBlogs || 0 }}</p>
-          <p class="text-gray-600 dark:text-gray-400">Blog Posts</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-      <div class="flex items-center">
-        <div class="p-3 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <svg class="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-          </svg>
-        </div>
-        <div class="ml-4">
-          <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ stats?.totalSnippets || 0 }}</p>
-          <p class="text-gray-600 dark:text-gray-400">Code Snippets</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Recent Activity -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <h2 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Recent Activity</h2>
-    
-    <div class="space-y-4">
-      <div *ngFor="let activity of recentActivity" class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-        <div class="flex-shrink-0">
-          <div class="h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
-            <svg class="h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Projects Stats -->
+      <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 p-3 bg-gradient-to-br from-[#2563eb] to-[#3b82f6] rounded-lg">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
             </svg>
           </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-[#e6edf3]">{{ stats?.totalProjects || 0 }}</p>
+            <p class="text-[#7d8590]">Projects</p>
+          </div>
         </div>
-        <div class="flex-1 min-w-0">
-          <p class="text-sm text-gray-900 dark:text-white">{{ activity.message }}</p>
-          <p class="text-xs text-gray-500 dark:text-gray-400">{{ activity.timestamp | date:'medium' }}</p>
+      </div>
+
+      <!-- Blogs Stats -->
+      <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 p-3 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-lg">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-[#e6edf3]">{{ stats?.totalBlogs || 0 }}</p>
+            <p class="text-[#7d8590]">Blog Posts</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Snippets Stats -->
+      <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 p-3 bg-gradient-to-br from-[#7c3aed] to-[#8b5cf6] rounded-lg">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <p class="text-2xl font-bold text-[#e6edf3]">{{ stats?.totalSnippets || 0 }}</p>
+            <p class="text-[#7d8590]">Code Snippets</p>
+          </div>
         </div>
       </div>
     </div>
-    
-    <div *ngIf="recentActivity.length === 0" class="text-center py-8">
-      <svg class="mx-auto h-8 w-8 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-      </svg>
-      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">No recent activity</p>
+
+    <!-- Recent Activity -->
+    <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-[#e6edf3] mb-4">Recent Activity</h2>
+      
+      <div class="space-y-3">
+        <div *ngFor="let activity of recentActivity" 
+             class="flex items-center space-x-3 p-4 bg-[#21262d] border border-[#30363d] rounded-lg">
+          <div class="flex-shrink-0">
+            <div class="h-8 w-8 rounded-full bg-gradient-to-br from-[#2563eb] to-[#3b82f6] flex items-center justify-center">
+              <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-[#e6edf3] font-medium">{{ activity.message }}</p>
+            <p class="text-xs text-[#7d8590]">{{ activity.timestamp | date:'medium' }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="recentActivity.length === 0" class="text-center py-12">
+        <svg class="mx-auto h-12 w-12 text-[#656d76] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+        </svg>
+        <h3 class="text-sm font-medium text-[#e6edf3] mb-1">No recent activity</h3>
+        <p class="text-sm text-[#7d8590]">Start creating projects, blogs, or snippets to see activity here</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Quick Actions -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <h2 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Quick Actions</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <button
-        routerLink="/projects"
-        class="flex items-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
-      >
-        <svg class="h-8 w-8 text-blue-600 dark:text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-        </svg>
-        <div class="text-left">
-          <p class="font-medium text-gray-900 dark:text-white">Projects</p>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Manage your projects</p>
-        </div>
-      </button>
+    <!-- Quick Actions -->
+    <div class="bg-[#0d1117] border border-[#30363d]/50 rounded-lg p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-[#e6edf3] mb-6">Quick Actions</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Projects -->
+        <button
+          routerLink="/projects"
+          class="flex items-center p-4 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] 
+                 rounded-lg transition-colors duration-200 group"
+        >
+          <div class="flex-shrink-0 p-2 bg-gradient-to-br from-[#2563eb] to-[#3b82f6] rounded-lg mr-3 
+                      group-hover:scale-110 transition-transform duration-200">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-[#e6edf3]">Projects</p>
+            <p class="text-sm text-[#7d8590]">Manage your projects</p>
+          </div>
+        </button>
 
-      <button
-        routerLink="/blogs"
-        class="flex items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
-      >
-        <svg class="h-8 w-8 text-green-600 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-        </svg>
-        <div class="text-left">
-          <p class="font-medium text-gray-900 dark:text-white">Blog Posts</p>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Write and share</p>
-        </div>
-      </button>
+        <!-- Blogs -->
+        <button
+          routerLink="/blogs"
+          class="flex items-center p-4 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] 
+                 rounded-lg transition-colors duration-200 group"
+        >
+          <div class="flex-shrink-0 p-2 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-lg mr-3 
+                      group-hover:scale-110 transition-transform duration-200">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-[#e6edf3]">Blog Posts</p>
+            <p class="text-sm text-[#7d8590]">Write and share</p>
+          </div>
+        </button>
 
-      <button
-        routerLink="/snippets"
-        class="flex items-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
-      >
-        <svg class="h-8 w-8 text-purple-600 dark:text-purple-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-        </svg>
-        <div class="text-left">
-          <p class="font-medium text-gray-900 dark:text-white">Code Snippets</p>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Save useful code</p>
-        </div>
-      </button>
+        <!-- Snippets -->
+        <button
+          routerLink="/snippets"
+          class="flex items-center p-4 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] 
+                 rounded-lg transition-colors duration-200 group"
+        >
+          <div class="flex-shrink-0 p-2 bg-gradient-to-br from-[#7c3aed] to-[#8b5cf6] rounded-lg mr-3 
+                      group-hover:scale-110 transition-transform duration-200">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-[#e6edf3]">Code Snippets</p>
+            <p class="text-sm text-[#7d8590]">Save useful code</p>
+          </div>
+        </button>
 
-      <button
-        routerLink="/ai"
-        class="flex items-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-colors"
-      >
-        <svg class="h-8 w-8 text-yellow-600 dark:text-yellow-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-        </svg>
-        <div class="text-left">
-          <p class="font-medium text-gray-900 dark:text-white">AI Tools</p>
-          <p class="text-sm text-gray-600 dark:text-gray-400">Code assistance</p>
-        </div>
-      </button>
+        <!-- AI Tools -->
+        <button
+          routerLink="/ai"
+          class="flex items-center p-4 bg-[#21262d] hover:bg-[#30363d] border border-[#30363d] 
+                 rounded-lg transition-colors duration-200 group"
+        >
+          <div class="flex-shrink-0 p-2 bg-gradient-to-br from-[#f59e0b] to-[#d97706] rounded-lg mr-3 
+                      group-hover:scale-110 transition-transform duration-200">
+            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <p class="font-semibold text-[#e6edf3]">AI Tools</p>
+            <p class="text-sm text-[#7d8590]">Code assistance</p>
+          </div>
+        </button>
+      </div>
     </div>
-  </div>
   </div>
 </div>

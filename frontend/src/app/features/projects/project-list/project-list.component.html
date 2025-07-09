@@ -1,53 +1,54 @@
-<div class="space-y-6">
-  <!-- Header -->
-  <div class="flex items-center justify-between">
-    <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Projects</h1>
-      <p class="text-gray-600 dark:text-gray-400">Manage and explore your coding projects</p>
+<div class="min-h-screen bg-[#fafbfc] dark:bg-[#0d1117] py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-[#2563eb] to-[#7c3aed] bg-clip-text text-transparent">Projects</h1>
+        <p class="text-[#656d76] dark:text-[#7d8590] mt-1">Manage and explore your coding projects</p>
+      </div>
+      <button
+        routerLink="/projects/create"
+        class="px-4 py-2.5 bg-[#2563eb] text-white font-medium rounded-md hover:bg-[#1d4ed8] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 transition-all duration-200 flex items-center shadow-sm"
+      >
+        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+        New Project
+      </button>
     </div>
-    <button
-      routerLink="/projects/create"
-      class="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors flex items-center"
-    >
-      <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-      </svg>
-      New Project
-    </button>
-  </div>
 
-  <!-- Filters and Search -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <div class="flex flex-col sm:flex-row gap-4">
-      <!-- Search -->
-      <div class="flex-1">
-        <div class="relative">
-          <input
-            type="text"
-            [(ngModel)]="searchTerm"
-            (input)="onSearchChange()"
-            placeholder="Search projects..."
-            class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-          />
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
+    <!-- Filters and Search -->
+    <div class="bg-[#ffffff] dark:bg-[#21262d] rounded-lg p-6 border border-[#e1e5e9] dark:border-[#30363d] shadow-sm">
+      <div class="flex flex-col sm:flex-row gap-4">
+        <!-- Search -->
+        <div class="flex-1">
+          <div class="relative">
+            <input
+              type="text"
+              [(ngModel)]="searchTerm"
+              (input)="onSearchChange()"
+              placeholder="Search projects..."
+              class="block w-full pl-10 pr-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
+            />
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-[#656d76] dark:text-[#7d8590]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Language Filter -->
-      <div class="w-full sm:w-48">
-        <select
-          [(ngModel)]="selectedLanguage"
-          (change)="onFilterChange()"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-          aria-label="Filter by language"
-          title="Filter by language"
-        >
-          <option value="">All Languages</option>
-          <option value="JavaScript">JavaScript</option>
+        <!-- Language Filter -->
+        <div class="w-full sm:w-48">
+          <select
+            [(ngModel)]="selectedLanguage"
+            (change)="onFilterChange()"
+            class="block w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] transition-all duration-200"
+            aria-label="Filter by language"
+            title="Filter by language"
+          >
+            <option value="">All Languages</option>
+            <option value="JavaScript">JavaScript</option>
           <option value="TypeScript">TypeScript</option>
           <option value="Python">Python</option>
           <option value="Java">Java</option>

@@ -42,8 +42,16 @@ public class NotificationController {
         User user = userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
         
+        // Check if user has any notifications, if not create some sample ones
+        Page<Notification> notificationsPage = notificationService.getUserNotifications(user, PageRequest.of(0, 1));
+        
+        if (notificationsPage.getTotalElements() == 0) {
+            log.info("Creating sample notifications for user: {}", user.getUsername());
+            createSampleNotifications(user);
+        }
+        
         Pageable pageable = PageRequest.of(page, size);
-        Page<Notification> notificationsPage = notificationService.getUserNotifications(user, pageable);
+        notificationsPage = notificationService.getUserNotifications(user, pageable);
         
         List<NotificationDto> notificationDtos = notificationsPage.getContent()
                 .stream()
@@ -108,5 +116,37 @@ public class NotificationController {
                 request.getType(), request.getActionUrl(), request.getActionText());
         
         return ResponseEntity.ok(NotificationDto.fromEntity(notification));
+    }
+    
+    private void createSampleNotifications(User user) {
+        // Create welcome notification
+        notificationService.createNotification(
+                user, 
+                "Welcome to CodeHaven!", 
+                "Start by creating your first project or exploring AI-powered features.",
+                Notification.NotificationType.INFO,
+                "/projects/create",
+                "Create Project"
+        );
+        
+        // Create feature notification
+        notificationService.createNotification(
+                user, 
+                "New AI Feature Available", 
+                "Try our enhanced code review feature with improved accuracy.",
+                Notification.NotificationType.SUCCESS,
+                "/ai/code-review",
+                "Try It"
+        );
+        
+        // Create tips notification
+        notificationService.createNotification(
+                user, 
+                "Pro Tip: Code Snippets", 
+                "Share your JavaScript utility functions with the community.",
+                Notification.NotificationType.INFO,
+                "/snippets",
+                "View Snippets"
+        );
     }
 }

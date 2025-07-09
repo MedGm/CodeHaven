@@ -1,6 +1,6 @@
 <div class="space-y-6">
   <!-- Welcome Header -->
-  <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 text-white">
+  <div class="bg-gradient-to-r from-[#2563eb] to-[#7c3aed] rounded-xl p-6 text-white shadow-xl">
     <h1 class="text-2xl font-bold mb-2">Welcome back, {{ currentUser?.username }}!</h1>
     <p class="text-blue-100">Ready to build something amazing today?</p>
   </div>
@@ -8,56 +8,56 @@
   <!-- Stats Grid -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <!-- Projects -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+    <div class="bg-[#21262d] border border-[#30363d] rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-200">
       <div class="flex items-center">
-        <div class="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-          <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="p-2 bg-[#0969da]/20 rounded-lg">
+          <svg class="h-6 w-6 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-4h.01M6 15h1m6 0h1m6 0h.01M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
         </div>
         <div class="ml-4">
-          <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Projects</p>
-          <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ stats.projects }}</p>
+          <p class="text-sm font-medium text-[#7d8590]">Projects</p>
+          <p class="text-2xl font-bold text-[#e6edf3]">{{ stats.projects }}</p>
         </div>
       </div>
       <div class="mt-4">
-        <a routerLink="/projects" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all →</a>
+        <a routerLink="/projects" class="text-sm text-[#2563eb] hover:text-[#1d4ed8] hover:underline transition-colors">View all →</a>
       </div>
     </div>
 
     <!-- Blogs -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+    <div class="bg-[#21262d] border border-[#30363d] rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-200">
       <div class="flex items-center">
-        <div class="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
-          <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="p-2 bg-[#16803b]/20 rounded-lg">
+          <svg class="h-6 w-6 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
           </svg>
         </div>
         <div class="ml-4">
-          <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Blogs</p>
-          <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ stats.blogs }}</p>
+          <p class="text-sm font-medium text-[#7d8590]">Blogs</p>
+          <p class="text-2xl font-bold text-[#e6edf3]">{{ stats.blogs }}</p>
         </div>
       </div>
       <div class="mt-4">
-        <a routerLink="/blogs" class="text-sm text-green-600 dark:text-green-400 hover:underline">View all →</a>
+        <a routerLink="/blogs" class="text-sm text-[#16a34a] hover:text-[#15803d] hover:underline transition-colors">View all →</a>
       </div>
     </div>
 
     <!-- Snippets -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+    <div class="bg-[#21262d] border border-[#30363d] rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-200">
       <div class="flex items-center">
-        <div class="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-          <svg class="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="p-2 bg-[#7c3aed]/20 rounded-lg">
+          <svg class="h-6 w-6 text-[#7c3aed]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
           </svg>
         </div>
         <div class="ml-4">
-          <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Snippets</p>
-          <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ stats.snippets }}</p>
+          <p class="text-sm font-medium text-[#7d8590]">Snippets</p>
+          <p class="text-2xl font-bold text-[#e6edf3]">{{ stats.snippets }}</p>
         </div>
       </div>
       <div class="mt-4">
-        <a routerLink="/snippets" class="text-sm text-purple-600 dark:text-purple-400 hover:underline">View all →</a>
+        <a routerLink="/snippets" class="text-sm text-[#7c3aed] hover:text-[#6d28d9] hover:underline transition-colors">View all →</a>
       </div>
     </div>
   </div>
@@ -100,21 +100,21 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
         </svg>
         <div class="text-left">
-          <p class="font-medium text-gray-900 dark:text-white">Add Snippet</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Save code</p>
+          <p class="font-medium text-[#e6edf3]">Add Snippet</p>
+          <p class="text-sm text-[#7d8590]">Save code</p>
         </div>
       </button>
 
       <button
         routerLink="/ai"
-        class="flex items-center p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors"
+        class="flex items-center p-4 bg-orange-600/10 border border-orange-600/30 rounded-lg hover:bg-orange-600/20 transition-colors"
       >
-        <svg class="h-8 w-8 text-orange-600 dark:text-orange-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-8 w-8 text-orange-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
         </svg>
         <div class="text-left">
-          <p class="font-medium text-gray-900 dark:text-white">AI Assistant</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Get help</p>
+          <p class="font-medium text-[#e6edf3]">AI Assistant</p>
+          <p class="text-sm text-[#7d8590]">Get help</p>
         </div>
       </button>
     </div>
@@ -123,43 +123,43 @@
   <!-- Unified Activity Feed -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Recent Projects -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+    <div class="bg-[#0d1117] border border-[#21262d] rounded-lg p-6">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Projects</h2>
-        <a routerLink="/projects" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all</a>
+        <h2 class="text-lg font-semibold text-[#e6edf3]">Recent Projects</h2>
+        <a routerLink="/projects" class="text-sm text-[#2563eb] hover:underline">View all</a>
       </div>
       <div class="space-y-3">
         <div *ngFor="let project of recentProjects" class="group cursor-pointer" (click)="navigateToProject(project.id)">
-          <div class="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-600 transition-colors">
-            <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mr-3">
-              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-center p-3 bg-[#161b22] rounded-lg group-hover:bg-[#21262d] transition-colors">
+            <div class="w-8 h-8 bg-[#2563eb]/20 rounded-lg flex items-center justify-center mr-3">
+              <svg class="w-4 h-4 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-4h.01M6 15h1m6 0h1m6 0h.01M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
             </div>
             <div class="flex-1">
-              <p class="text-sm font-medium text-gray-900 dark:text-white">{{ project.name }}</p>
-              <p class="text-xs text-gray-500 dark:text-gray-400">
+              <p class="text-sm font-medium text-[#e6edf3]">{{ project.name }}</p>
+              <p class="text-xs text-[#7d8590]">
                 {{ project.technologies && project.technologies.length > 0 ? project.technologies[0] : 'No technology' }} • 
                 {{ project.updatedAt | date:'short' }}
               </p>
             </div>
             <div class="opacity-0 group-hover:opacity-100 transition-opacity">
-              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 text-[#7d8590]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
               </svg>
             </div>
           </div>
         </div>
-        <div *ngIf="recentProjects.length === 0" class="text-center py-8 text-gray-500 dark:text-gray-400">
+        <div *ngIf="recentProjects.length === 0" class="text-center py-8 text-[#7d8590]">
           <p>No projects yet. Create your first project!</p>
         </div>
       </div>
     </div>
 
     <!-- Enhanced Activity Feed -->
-    <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+    <div class="lg:col-span-2 bg-[#0d1117] border border-[#21262d] rounded-lg p-6">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Activity Feed</h2>
+        <h2 class="text-lg font-semibold text-[#e6edf3]">Activity Feed</h2>
         <div class="flex space-x-2">
           <button 
             *ngFor="let filter of feedFilters" 
@@ -173,7 +173,7 @@
       
       <div class="space-y-4 max-h-96 overflow-y-auto">
         <div *ngFor="let activity of filteredActivity; trackBy: trackActivity" 
-             class="flex items-start p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group cursor-pointer"
+             class="flex items-start p-4 bg-[#161b22]/50 rounded-lg hover:bg-[#21262d] transition-colors group cursor-pointer"
              (click)="navigateToActivity(activity)">
           
           <!-- Activity Icon -->
@@ -187,15 +187,15 @@
           <div class="flex-1 min-w-0">
             <div class="flex items-start justify-between">
               <div class="flex-1">
-                <p class="text-sm font-medium text-gray-900 dark:text-white mb-1">
+                <p class="text-sm font-medium text-[#e6edf3] mb-1">
                   {{ activity.title }}
                 </p>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                <p class="text-sm text-[#7d8590] mb-2">
                   {{ activity.description }}
                 </p>
                 
                 <!-- Activity Meta -->
-                <div class="flex items-center space-x-4 text-xs text-gray-500 dark:text-gray-400">
+                <div class="flex items-center space-x-4 text-xs text-[#7d8590]">
                   <span class="flex items-center">
                     <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -219,7 +219,7 @@
                   {{ activity.status }}
                 </span>
                 <div class="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 text-[#7d8590]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                   </svg>
                 </div>
@@ -228,11 +228,11 @@
           </div>
         </div>
         
-        <div *ngIf="filteredActivity.length === 0" class="text-center py-12 text-gray-500 dark:text-gray-400">
-          <svg class="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div *ngIf="filteredActivity.length === 0" class="text-center py-12 text-[#7d8590]">
+          <svg class="w-12 h-12 mx-auto mb-4 text-[#30363d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
           </svg>
-          <p class="text-lg font-medium mb-1">No {{ activeFilter === 'all' ? '' : activeFilter }} activity yet</p>
+          <p class="text-lg font-medium mb-1 text-[#e6edf3]">No {{ activeFilter === 'all' ? '' : activeFilter }} activity yet</p>
           <p class="text-sm">{{ getEmptyStateMessage() }}</p>
         </div>
       </div>

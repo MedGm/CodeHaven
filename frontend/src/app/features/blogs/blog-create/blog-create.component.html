@@ -1,25 +1,25 @@
 <div class="max-w-4xl mx-auto space-y-6">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+  <div class="bg-white dark:bg-[#21262d] rounded-lg p-6 border border-[#e1e5e9] dark:border-[#30363d]">
     <div class="flex items-center space-x-3">
-      <div class="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
-        <svg class="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="p-2 bg-[#f3e8ff] dark:bg-purple-900/20 rounded-lg">
+        <svg class="h-6 w-6 text-[#7c3aed] dark:text-[#a855f7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
         </svg>
       </div>
       <div>
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Create New Blog Post</h1>
-        <p class="text-gray-600 dark:text-gray-400">Share your knowledge and insights with the community</p>
+        <h1 class="text-2xl font-bold text-[#24292f] dark:text-[#e6edf3]">Create New Blog Post</h1>
+        <p class="text-[#656d76] dark:text-[#7d8590]">Share your knowledge and insights with the community</p>
       </div>
     </div>
   </div>
 
   <!-- Blog Creation Form -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+  <div class="bg-white dark:bg-[#21262d] rounded-lg p-6 border border-[#e1e5e9] dark:border-[#30363d]">
     <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <!-- Title -->
       <div>
-        <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="title" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
           Title *
         </label>
         <input
@@ -27,7 +27,7 @@
           id="title"
           formControlName="title"
           placeholder="Enter your blog post title..."
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          class="w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
         />
         <div *ngIf="blogForm.get('title')?.invalid && blogForm.get('title')?.touched" class="mt-1">
           <p class="text-sm text-red-600 dark:text-red-400">Title is required (minimum 5 characters)</p>
@@ -37,13 +37,13 @@
       <!-- Status and Reading Time Row -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label for="status" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
             Status
           </label>
           <select
             id="status"
             formControlName="status"
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            class="w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] transition-all duration-200"
           >
             <option value="DRAFT">Draft</option>
             <option value="PUBLISHED">Published</option>
@@ -51,7 +51,7 @@
         </div>
 
         <div>
-          <label for="readingTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label for="readingTime" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
             Reading Time (minutes)
           </label>
           <input
@@ -60,14 +60,14 @@
             formControlName="readingTime"
             placeholder="e.g. 5"
             min="1"
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+            class="w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
           />
         </div>
       </div>
 
       <!-- Excerpt -->
       <div>
-        <label for="excerpt" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="excerpt" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
           Excerpt (Optional)
         </label>
         <textarea
@@ -75,9 +75,9 @@
           formControlName="excerpt"
           rows="3"
           placeholder="Brief description of your blog post..."
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          class="w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
         ></textarea>
-        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Maximum 500 characters</p>
+        <p class="mt-1 text-sm text-[#656d76] dark:text-[#7d8590]">Maximum 500 characters</p>
         <div *ngIf="blogForm.get('excerpt')?.invalid && blogForm.get('excerpt')?.touched" class="mt-1">
           <p class="text-sm text-red-600 dark:text-red-400">Excerpt must not exceed 500 characters</p>
         </div>
@@ -85,7 +85,7 @@
 
       <!-- Cover Image URL -->
       <div>
-        <label for="coverImageUrl" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="coverImageUrl" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
           Cover Image URL (Optional)
         </label>
         <input
@@ -93,13 +93,13 @@
           id="coverImageUrl"
           formControlName="coverImageUrl"
           placeholder="https://example.com/image.jpg"
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          class="w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
         />
       </div>
 
       <!-- Tags -->
       <div>
-        <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="tags" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
           Tags (Optional)
         </label>
         <input
@@ -107,22 +107,22 @@
           id="tags"
           formControlName="tags"
           placeholder="Enter tags separated by commas (e.g., javascript, tutorial, frontend)"
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          class="w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
         />
       </div>
 
       <!-- Content Editor with GitHub-style tabs -->
       <div>
         <div class="flex items-center justify-between mb-2">
-          <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label for="content" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3]">
             Content *
           </label>
           <div class="flex items-center space-x-2">
             <button
               type="button"
               (click)="activeEditorTab = 'write'"
-              [class]="activeEditorTab === 'write' ? 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white' : 'bg-gray-50 dark:bg-gray-800 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
-              class="px-3 py-1 text-sm font-medium border rounded-t-md transition-colors"
+              [class]="activeEditorTab === 'write' ? 'bg-[#f6f8fa] dark:bg-[#21262d] border-[#d1d9e0] dark:border-[#30363d] text-[#24292f] dark:text-[#e6edf3]' : 'bg-[#ffffff] dark:bg-[#0d1117] border-transparent text-[#656d76] dark:text-[#7d8590] hover:text-[#24292f] dark:hover:text-[#e6edf3]'"
+              class="px-3 py-1.5 text-sm font-medium border rounded-t-md transition-all duration-200"
             >
               <svg class="h-4 w-4 mr-1.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
@@ -132,8 +132,8 @@
             <button
               type="button"
               (click)="activeEditorTab = 'preview'"
-              [class]="activeEditorTab === 'preview' ? 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white' : 'bg-gray-50 dark:bg-gray-800 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
-              class="px-3 py-1 text-sm font-medium border rounded-t-md transition-colors"
+              [class]="activeEditorTab === 'preview' ? 'bg-[#f6f8fa] dark:bg-[#21262d] border-[#d1d9e0] dark:border-[#30363d] text-[#24292f] dark:text-[#e6edf3]' : 'bg-[#ffffff] dark:bg-[#0d1117] border-transparent text-[#656d76] dark:text-[#7d8590] hover:text-[#24292f] dark:hover:text-[#e6edf3]'"
+              class="px-3 py-1.5 text-sm font-medium border rounded-t-md transition-all duration-200"
             >
               <svg class="h-4 w-4 mr-1.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -173,27 +173,27 @@ function example() {
 
 ## Conclusion
 Wrap up your thoughts..."
-            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white font-mono text-sm leading-6 resize-none"
+            class="w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] font-mono text-sm leading-6 resize-none transition-all duration-200"
           ></textarea>
           
           <!-- Markdown Toolbar -->
-          <div class="absolute top-2 right-2 flex items-center space-x-1 bg-white dark:bg-gray-800 rounded-md shadow-sm border border-gray-200 dark:border-gray-600 p-1">
-            <button type="button" (click)="insertMarkdown('**', '**')" title="Bold" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+          <div class="absolute top-2 right-2 flex items-center space-x-1 bg-[#ffffff] dark:bg-[#21262d] rounded-md shadow-sm border border-[#d1d9e0] dark:border-[#30363d] p-1">
+            <button type="button" (click)="insertMarkdown('**', '**')" title="Bold" class="p-1.5 text-[#656d76] hover:text-[#24292f] dark:text-[#7d8590] dark:hover:text-[#e6edf3] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] rounded transition-all duration-200">
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h12M6 8h12M6 16h12"/>
               </svg>
             </button>
-            <button type="button" (click)="insertMarkdown('*', '*')" title="Italic" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+            <button type="button" (click)="insertMarkdown('*', '*')" title="Italic" class="p-1.5 text-[#656d76] hover:text-[#24292f] dark:text-[#7d8590] dark:hover:text-[#e6edf3] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] rounded transition-all duration-200">
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8l10 8M7 16l10-8"/>
               </svg>
             </button>
-            <button type="button" (click)="insertMarkdown('`', '`')" title="Code" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+            <button type="button" (click)="insertMarkdown('`', '`')" title="Code" class="p-1.5 text-[#656d76] hover:text-[#24292f] dark:text-[#7d8590] dark:hover:text-[#e6edf3] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] rounded transition-all duration-200">
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
               </svg>
             </button>
-            <button type="button" (click)="insertMarkdown('[', '](url)')" title="Link" class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">
+            <button type="button" (click)="insertMarkdown('[', '](url)')" title="Link" class="p-1.5 text-[#656d76] hover:text-[#24292f] dark:text-[#7d8590] dark:hover:text-[#e6edf3] hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] rounded transition-all duration-200">
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
               </svg>
@@ -202,12 +202,12 @@ Wrap up your thoughts..."
         </div>
         
         <!-- Preview Tab -->
-        <div *ngIf="activeEditorTab === 'preview'" class="border border-gray-300 dark:border-gray-600 rounded-lg">
-          <div class="px-4 py-3 bg-gray-50 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600 rounded-t-lg">
-            <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300">Preview</h3>
+        <div *ngIf="activeEditorTab === 'preview'" class="border border-[#d1d9e0] dark:border-[#30363d] rounded-lg">
+          <div class="px-4 py-3 bg-[#f6f8fa] dark:bg-[#21262d] border-b border-[#d1d9e0] dark:border-[#30363d] rounded-t-lg">
+            <h3 class="text-sm font-medium text-[#24292f] dark:text-[#e6edf3]">Preview</h3>
           </div>
-          <div class="p-6 min-h-96 max-h-96 overflow-y-auto bg-white dark:bg-gray-800 rounded-b-lg">
-            <div *ngIf="!blogForm.get('content')?.value" class="text-center py-12 text-gray-500 dark:text-gray-400">
+          <div class="p-6 min-h-96 max-h-96 overflow-y-auto bg-[#ffffff] dark:bg-[#0d1117] rounded-b-lg">
+            <div *ngIf="!blogForm.get('content')?.value" class="text-center py-12 text-[#656d76] dark:text-[#7d8590]">
               <svg class="mx-auto h-12 w-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
@@ -225,9 +225,9 @@ Wrap up your thoughts..."
         </div>
         
         <!-- Markdown Help -->
-        <div class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+        <div class="mt-2 text-xs text-[#656d76] dark:text-[#7d8590]">
           <span class="font-medium">Tip:</span> You can use Markdown for formatting. 
-          <a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener" class="text-blue-600 dark:text-blue-400 hover:underline">Learn Markdown syntax</a>
+          <a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="noopener" class="text-[#2563eb] dark:text-[#58a6ff] hover:underline">Learn Markdown syntax</a>
         </div>
       </div>
 
@@ -237,9 +237,9 @@ Wrap up your thoughts..."
           id="isFeatured"
           type="checkbox"
           formControlName="isFeatured"
-          class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          class="h-4 w-4 text-[#2563eb] focus:ring-[#2563eb]/20 border-[#d1d9e0] dark:border-[#30363d] rounded bg-[#f6f8fa] dark:bg-[#0d1117]"
         />
-        <label for="isFeatured" class="ml-2 text-sm text-gray-700 dark:text-gray-300">
+        <label for="isFeatured" class="ml-2 text-sm text-[#24292f] dark:text-[#e6edf3]">
           Mark as featured post
         </label>
       </div>
@@ -249,14 +249,14 @@ Wrap up your thoughts..."
         <button
           type="button"
           (click)="onCancel()"
-          class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="px-4 py-2.5 text-sm font-medium text-[#24292f] dark:text-[#e6edf3] bg-[#ffffff] dark:bg-[#21262d] border border-[#d1d9e0] dark:border-[#30363d] rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#30363d] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 transition-all duration-200"
         >
           Cancel
         </button>
         <button
           type="submit"
           [disabled]="blogForm.invalid || isLoading"
-          class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+          class="px-4 py-2.5 text-sm font-medium text-white bg-[#2563eb] border border-transparent rounded-md hover:bg-[#1d4ed8] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center transition-all duration-200 shadow-sm"
         >
           <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

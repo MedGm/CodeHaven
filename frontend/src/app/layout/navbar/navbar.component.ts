@@ -34,21 +34,44 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Subscribe to current user
     this.authSubscription = this.authService.currentUser$.subscribe(
       user => {
+        console.log('Navbar: User changed', user ? user.username : 'null');
+        const previousUser = this.currentUser;
         this.currentUser = user;
+        
         if (user) {
-          this.loadNotifications();
+          // User logged in or profile updated
+          if (!previousUser || previousUser.id !== user.id) {
+            // New user login
+            console.log('Navbar: New user login, reinitializing notifications');
+            this.notificationService.reinitialize();
+          } else if (previousUser.avatarUrl !== user.avatarUrl) {
+            // Avatar updated, just refresh notifications to be safe
+            console.log('Navbar: Avatar updated, refreshing notifications');
+            this.loadNotifications();
+          }
+        } else {
+          // User logged out
+          console.log('Navbar: User logged out, clearing notifications');
+          this.notifications = [];
+          this.unreadCount = 0;
         }
       }
     );
 
     // Subscribe to notifications
     this.notificationSubscription = this.notificationService.notifications$.subscribe(
-      notifications => this.notifications = notifications
+      notifications => {
+        console.log('Navbar: Notifications updated, count:', notifications.length);
+        this.notifications = notifications;
+      }
     );
 
     // Subscribe to unread count
     this.unreadCountSubscription = this.notificationService.unreadCount$.subscribe(
-      count => this.unreadCount = count
+      count => {
+        console.log('Navbar: Unread count updated:', count);
+        this.unreadCount = count;
+      }
     );
 
     // Load theme preference
@@ -102,8 +125,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.showUserMenu = false; // Close user menu if open
     this.showMobileMenu = false; // Close mobile menu if open
     
+    console.log('Notification menu toggled:', this.showNotificationMenu);
+    console.log('Current notifications count:', this.notifications.length);
+    console.log('Current unread count:', this.unreadCount);
+    
     // Load notifications when opening the menu
     if (this.showNotificationMenu) {
+      this.notificationService.debugCurrentState();
       this.notificationService.ensureNotificationsLoaded();
     }
   }

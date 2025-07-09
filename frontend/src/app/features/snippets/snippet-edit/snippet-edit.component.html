@@ -1,20 +1,20 @@
-<div class="min-h-screen bg-gray-50 py-8">
+<div class="min-h-screen bg-[#0d1117] py-8">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="mb-8">
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-3xl font-bold text-gray-900">
+          <h1 class="text-3xl font-bold text-[#e6edf3]">
             {{ isEditMode ? 'Edit Snippet' : 'Create New Snippet' }}
           </h1>
-          <p class="mt-2 text-gray-600">
+          <p class="mt-2 text-[#7d8590]">
             {{ isEditMode ? 'Update your code snippet' : 'Share your code with the community' }}
           </p>
         </div>
         
         <button 
           (click)="onCancel()"
-          class="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors">
+          class="flex items-center space-x-2 px-4 py-2 text-[#7d8590] hover:text-[#e6edf3] transition-colors">
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -25,66 +25,64 @@
 
     <!-- Loading State -->
     <div *ngIf="isLoading && isEditMode" class="flex justify-center items-center py-12">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#2563eb]"></div>
     </div>
 
     <!-- Form -->
     <form *ngIf="!isLoading || !isEditMode" [formGroup]="snippetForm" (ngSubmit)="onSubmit()" class="space-y-6">
       
       <!-- Title and Description -->
-      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 class="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
+      <div class="bg-[#0d1117] border border-[#21262d] rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-[#e6edf3] mb-4">Basic Information</h2>
         
         <div class="space-y-4">
           <!-- Title -->
           <div>
-            <label for="title" class="block text-sm font-medium text-gray-700 mb-1">
-              Title <span class="text-red-500">*</span>
+            <label for="title" class="block text-sm font-medium text-[#e6edf3] mb-1">
+              Title <span class="text-red-400">*</span>
             </label>
             <input 
               type="text" 
               id="title"
               formControlName="title"
               placeholder="Enter a descriptive title for your snippet"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-              [class.border-red-300]="isFieldInvalid('title')"
-              [class.focus:ring-red-500]="isFieldInvalid('title')"
-              [class.focus:border-red-500]="isFieldInvalid('title')">
+              class="w-full px-3 py-2 border border-[#30363d] rounded-lg bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-colors"
+              [class.border-red-400]="isFieldInvalid('title')"
+              [class.focus:ring-red-500]="isFieldInvalid('title')">
             
-            <div *ngIf="isFieldInvalid('title')" class="mt-1 text-sm text-red-600">
+            <div *ngIf="isFieldInvalid('title')" class="mt-1 text-sm text-red-400">
               {{ getFieldError('title') }}
             </div>
           </div>
 
           <!-- Description -->
           <div>
-            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
-              Description <span class="text-red-500">*</span>
+            <label for="description" class="block text-sm font-medium text-[#e6edf3] mb-1">
+              Description <span class="text-red-400">*</span>
             </label>
             <textarea 
               id="description"
               formControlName="description"
               rows="3"
               placeholder="Describe what your snippet does and how to use it"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors resize-vertical"
-              [class.border-red-300]="isFieldInvalid('description')"
-              [class.focus:ring-red-500]="isFieldInvalid('description')"
-              [class.focus:border-red-500]="isFieldInvalid('description')"></textarea>
+              class="w-full px-3 py-2 border border-[#30363d] rounded-lg bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-colors resize-vertical"
+              [class.border-red-400]="isFieldInvalid('description')"
+              [class.focus:ring-red-500]="isFieldInvalid('description')"></textarea>
             
-            <div *ngIf="isFieldInvalid('description')" class="mt-1 text-sm text-red-600">
+            <div *ngIf="isFieldInvalid('description')" class="mt-1 text-sm text-red-400">
               {{ getFieldError('description') }}
             </div>
           </div>
 
           <!-- Language -->
           <div>
-            <label for="language" class="block text-sm font-medium text-gray-700 mb-1">
-              Language <span class="text-red-500">*</span>
+            <label for="language" class="block text-sm font-medium text-[#e6edf3] mb-1">
+              Language <span class="text-red-400">*</span>
             </label>
             <select 
               id="language"
               formControlName="language"
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+              class="w-full px-3 py-2 border border-[#30363d] rounded-lg bg-[#0d1117] text-[#e6edf3] focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-colors">
               <option *ngFor="let lang of availableLanguages" [value]="lang">
                 {{ lang.charAt(0).toUpperCase() + lang.slice(1) }}
               </option>
@@ -94,13 +92,13 @@
       </div>
 
       <!-- Code Editor -->
-      <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-900">Code</h2>
+      <div class="bg-[#0d1117] border border-[#21262d] rounded-lg">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-[#21262d]">
+          <h2 class="text-lg font-semibold text-[#e6edf3]">Code</h2>
           <button 
             type="button"
             (click)="insertCodeTemplate()"
-            class="flex items-center space-x-2 px-3 py-1.5 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
+            class="flex items-center space-x-2 px-3 py-1.5 text-sm bg-[#21262d] text-[#e6edf3] rounded-md hover:bg-[#30363d] transition-colors">
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
@@ -110,21 +108,21 @@
         
         <div class="p-6">
           <div class="mb-2">
-            <label for="code" class="block text-sm font-medium text-gray-700">
-              Code <span class="text-red-500">*</span>
+            <label for="code" class="block text-sm font-medium text-[#e6edf3]">
+              Code <span class="text-red-400">*</span>
             </label>
           </div>
           
-          <div class="border border-gray-300 rounded-lg overflow-hidden"
-               [class.border-red-300]="isFieldInvalid('code')">
-            <div class="bg-gray-50 px-4 py-2 border-b border-gray-200 flex items-center justify-between">
+          <div class="border border-[#30363d] rounded-lg overflow-hidden"
+               [class.border-red-400]="isFieldInvalid('code')">
+            <div class="bg-[#21262d] px-4 py-2 border-b border-[#30363d] flex items-center justify-between">
               <div class="flex items-center space-x-2">
                 <div class="flex space-x-1">
                   <div class="w-3 h-3 rounded-full bg-red-400"></div>
                   <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
                   <div class="w-3 h-3 rounded-full bg-green-400"></div>
                 </div>
-                <span class="text-sm text-gray-600">{{ language?.value }}</span>
+                <span class="text-sm text-[#7d8590]">{{ language?.value }}</span>
               </div>
             </div>
             
@@ -133,23 +131,23 @@
               formControlName="code"
               rows="20"
               placeholder="Paste or type your code here..."
-              class="w-full px-4 py-3 font-mono text-sm border-0 focus:ring-0 focus:outline-none resize-none bg-white code-editor"></textarea>
+              class="w-full px-4 py-3 font-mono text-sm border-0 focus:ring-0 focus:outline-none resize-none bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] code-editor"></textarea>
           </div>
           
-          <div *ngIf="isFieldInvalid('code')" class="mt-2 text-sm text-red-600">
+          <div *ngIf="isFieldInvalid('code')" class="mt-2 text-sm text-red-400">
             {{ getFieldError('code') }}
           </div>
         </div>
       </div>
 
       <!-- Tags -->
-      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 class="text-lg font-semibold text-gray-900 mb-4">Tags</h2>
+      <div class="bg-[#0d1117] border border-[#21262d] rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-[#e6edf3] mb-4">Tags</h2>
         
         <div class="space-y-3">
           <!-- Tag Input -->
           <div>
-            <label for="tagInput" class="block text-sm font-medium text-gray-700 mb-1">
+            <label for="tagInput" class="block text-sm font-medium text-[#e6edf3] mb-1">
               Add Tags
             </label>
             <div class="flex space-x-2">
@@ -159,31 +157,31 @@
                 [(ngModel)]="tagInput"
                 (keyup)="onTagInputKeyup($event)"
                 placeholder="Enter tags (press Enter or comma to add)"
-                class="flex-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+                class="flex-1 px-3 py-2 border border-[#30363d] rounded-lg bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:ring-2 focus:ring-[#2563eb] focus:border-transparent transition-colors">
               <button 
                 type="button"
                 (click)="addTag()"
-                class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                class="px-4 py-2 bg-[#2563eb] text-white rounded-lg hover:bg-[#1d4ed8] transition-colors">
                 Add
               </button>
             </div>
-            <p class="mt-1 text-sm text-gray-500">
+            <p class="mt-1 text-sm text-[#7d8590]">
               Tags help others discover your snippet. Use relevant keywords like language features, frameworks, or use cases.
             </p>
           </div>
 
           <!-- Current Tags -->
           <div *ngIf="tags.length > 0">
-            <h3 class="text-sm font-medium text-gray-700 mb-2">Current Tags:</h3>
+            <h3 class="text-sm font-medium text-[#e6edf3] mb-2">Current Tags:</h3>
             <div class="flex flex-wrap gap-2">
               <span *ngFor="let tag of tags" 
-                    class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-indigo-100 text-indigo-800">
+                    class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-[#2563eb]/20 text-[#2563eb] border border-[#2563eb]/30">
                 #{{ tag }}
                 <button 
                   type="button"
                   (click)="removeTag(tag)"
                   title="Remove tag"
-                  class="ml-2 text-indigo-600 hover:text-indigo-800 transition-colors">
+                  class="ml-2 text-[#2563eb] hover:text-[#1d4ed8] transition-colors">
                   <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -195,24 +193,24 @@
       </div>
 
       <!-- Form Actions -->
-      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+      <div class="bg-[#0d1117] border border-[#21262d] rounded-lg p-6">
         <div class="flex items-center justify-between">
-          <div class="text-sm text-gray-500">
-            <span class="text-red-500">*</span> Required fields
+          <div class="text-sm text-[#7d8590]">
+            <span class="text-red-400">*</span> Required fields
           </div>
           
           <div class="flex items-center space-x-3">
             <button 
               type="button"
               (click)="onCancel()"
-              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              class="px-4 py-2 border border-[#30363d] text-[#e6edf3] bg-[#21262d] rounded-lg hover:bg-[#30363d] transition-colors">
               Cancel
             </button>
             
             <button 
               type="submit"
               [disabled]="snippetForm.invalid || isLoading"
-              class="flex items-center space-x-2 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+              class="flex items-center space-x-2 px-6 py-2 bg-[#2563eb] text-white rounded-lg hover:bg-[#1d4ed8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
               <svg *ngIf="isLoading" class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>

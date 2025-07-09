@@ -1,16 +1,19 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen flex items-center justify-center bg-[#fafbfc] dark:bg-[#0d1117] py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
     <!-- Header -->
     <div>
       <div class="flex justify-center">
-        <svg class="h-12 w-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-        </svg>
+        <div class="relative">
+          <svg class="h-12 w-12 text-[#2563eb] dark:text-[#58a6ff]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <div class="absolute -top-1 -right-1 w-4 h-4 bg-[#10b981] rounded-full animate-pulse"></div>
+        </div>
       </div>
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+      <h2 class="mt-6 text-center text-3xl font-extrabold bg-gradient-to-r from-[#2563eb] to-[#7c3aed] bg-clip-text text-transparent">
         Join CodeHaven
       </h2>
-      <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+      <p class="mt-2 text-center text-sm text-[#656d76] dark:text-[#7d8590]">
         Create your account to start building amazing projects
       </p>
     </div>
@@ -29,192 +32,193 @@
 
     <!-- Register Form -->
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
-      <div class="space-y-4">
-        <!-- Username Field -->
-        <div>
-          <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Username
-          </label>
-          <div class="relative">
-            <input
-              id="username"
-              formControlName="username"
-              type="text"
-              class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              placeholder="Choose a username"
-            />
-            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-              </svg>
+      <div class="bg-white dark:bg-[#21262d] p-8 rounded-lg border border-[#e1e5e9] dark:border-[#30363d] shadow-sm">
+        <div class="space-y-4">
+          <!-- Username Field -->
+          <div>
+            <label for="username" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+              Username
+            </label>
+            <div class="relative">
+              <input
+                id="username"
+                formControlName="username"
+                type="text"
+                class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-lg placeholder-[#656d76] dark:placeholder-[#7d8590] text-[#24292f] dark:text-[#e6edf3] bg-[#f6f8fa] dark:bg-[#0d1117] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] transition-all duration-200"
+                placeholder="Choose a username"
+              />
+              <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <svg class="h-5 w-5 text-[#656d76] dark:text-[#7d8590]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+              </div>
+            </div>
+            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              <span *ngIf="registerForm.get('username')?.errors?.['required']">Username is required</span>
+              <span *ngIf="registerForm.get('username')?.errors?.['minlength']">Username must be at least 3 characters</span>
             </div>
           </div>
-          <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
-            <span *ngIf="registerForm.get('username')?.errors?.['required']">Username is required</span>
-            <span *ngIf="registerForm.get('username')?.errors?.['minlength']">Username must be at least 3 characters</span>
-          </div>
-        </div>
 
-        <!-- Email Field -->
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Email address
-          </label>
-          <div class="relative">
-            <input
-              id="email"
-              formControlName="email"
-              type="email"
-              class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              placeholder="Enter your email"
-            />
-            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
+          <!-- Email Field -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+              Email address
+            </label>
+            <div class="relative">
+              <input
+                id="email"
+                formControlName="email"
+                type="email"
+                class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-lg placeholder-[#656d76] dark:placeholder-[#7d8590] text-[#24292f] dark:text-[#e6edf3] bg-[#f6f8fa] dark:bg-[#0d1117] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] transition-all duration-200"
+                placeholder="Enter your email"
+              />
+              <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <svg class="h-5 w-5 text-[#656d76] dark:text-[#7d8590]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+            </div>
+            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</span>
+              <span *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email</span>
             </div>
           </div>
-          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
-            <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</span>
-            <span *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid email</span>
-          </div>
-        </div>
 
-        <!-- Password Field -->
-        <div>
-          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Password
-          </label>
-          <div class="relative">
-            <input
-              id="password"
-              formControlName="password"
-              [type]="showPassword ? 'text' : 'password'"
-              class="block w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              placeholder="Create a password"
-            />
-            <button
-              type="button"
-              (click)="togglePasswordVisibility()"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center"
-              [attr.title]="showPassword ? 'Hide password' : 'Show password'"
-              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
-            >
-              <span class="sr-only">{{ showPassword ? 'Hide password' : 'Show password' }}</span>
-              <svg *ngIf="!showPassword" class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
-              <svg *ngIf="showPassword" class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
-              </svg>
-            </button>
-          </div>
-          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
-            <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</span>
-            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters</span>
-          </div>
-          <!-- Password strength indicator -->
-          <div *ngIf="registerForm.get('password')?.value" class="mt-2">
-            <div class="flex space-x-1">
-              <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(0)"></div>
-              <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(1)"></div>
-              <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(2)"></div>
-              <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(3)"></div>
+          <!-- Password Field -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+              Password
+            </label>
+            <div class="relative">
+              <input
+                id="password"
+                formControlName="password"
+                [type]="showPassword ? 'text' : 'password'"
+                class="block w-full px-4 py-3 pr-12 border border-[#d1d9e0] dark:border-[#30363d] rounded-lg placeholder-[#656d76] dark:placeholder-[#7d8590] text-[#24292f] dark:text-[#e6edf3] bg-[#f6f8fa] dark:bg-[#0d1117] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] transition-all duration-200"
+                placeholder="Create a password"
+              />
+              <button
+                type="button"
+                (click)="togglePasswordVisibility()"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                [attr.title]="showPassword ? 'Hide password' : 'Show password'"
+                [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+              >
+                <span class="sr-only">{{ showPassword ? 'Hide password' : 'Show password' }}</span>
+                <svg *ngIf="!showPassword" class="h-5 w-5 text-[#656d76] dark:text-[#7d8590] hover:text-[#24292f] dark:hover:text-[#e6edf3] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                <svg *ngIf="showPassword" class="h-5 w-5 text-[#656d76] dark:text-[#7d8590] hover:text-[#24292f] dark:hover:text-[#e6edf3] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
+                </svg>
+              </button>
             </div>
-            <p class="text-xs mt-1" [ngClass]="getPasswordStrengthTextClass()">
-              {{ getPasswordStrengthText() }}
-            </p>
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</span>
+              <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters</span>
+            </div>
+            <!-- Password strength indicator -->
+            <div *ngIf="registerForm.get('password')?.value" class="mt-2">
+              <div class="flex space-x-1">
+                <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(0)"></div>
+                <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(1)"></div>
+                <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(2)"></div>
+                <div class="h-1 w-1/4 rounded" [ngClass]="getPasswordStrengthClass(3)"></div>
+              </div>
+              <p class="text-xs mt-1" [ngClass]="getPasswordStrengthTextClass()">
+                {{ getPasswordStrengthText() }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Confirm Password Field -->
+          <div>
+            <label for="confirmPassword" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+              Confirm Password
+            </label>
+            <div class="relative">
+              <input
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                class="block w-full px-4 py-3 pr-12 border border-[#d1d9e0] dark:border-[#30363d] rounded-lg placeholder-[#656d76] dark:placeholder-[#7d8590] text-[#24292f] dark:text-[#e6edf3] bg-[#f6f8fa] dark:bg-[#0d1117] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] transition-all duration-200"
+                placeholder="Confirm your password"
+              />
+              <button
+                type="button"
+                (click)="toggleConfirmPasswordVisibility()"
+                class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                [attr.title]="showConfirmPassword ? 'Hide password' : 'Show password'"
+                [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'"
+              >
+                <span class="sr-only">{{ showConfirmPassword ? 'Hide password' : 'Show password' }}</span>
+                <svg *ngIf="!showConfirmPassword" class="h-5 w-5 text-[#656d76] dark:text-[#7d8590] hover:text-[#24292f] dark:hover:text-[#e6edf3] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                <svg *ngIf="showConfirmPassword" class="h-5 w-5 text-[#656d76] dark:text-[#7d8590] hover:text-[#24292f] dark:hover:text-[#e6edf3] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
+                </svg>
+              </button>
+            </div>
+            <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+              <span *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Please confirm your password</span>
+              <span *ngIf="registerForm.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not match</span>
+            </div>
           </div>
         </div>
 
-        <!-- Confirm Password Field -->
-        <div>
-          <label for="confirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Confirm Password
+        <!-- Terms and Conditions -->
+        <div class="flex items-start pt-4">
+          <input
+            id="terms"
+            formControlName="acceptTerms"
+            type="checkbox"
+            class="h-4 w-4 text-[#2563eb] focus:ring-[#2563eb] border-[#d1d9e0] dark:border-[#30363d] rounded bg-[#f6f8fa] dark:bg-[#0d1117] mt-1"
+          />
+          <label for="terms" class="ml-2 block text-sm text-[#24292f] dark:text-[#e6edf3]">
+            I agree to the 
+            <a href="#" class="text-[#2563eb] hover:text-[#1d4ed8] dark:text-[#58a6ff] dark:hover:text-[#79c0ff] transition-colors">Terms of Service</a>
+            and 
+            <a href="#" class="text-[#2563eb] hover:text-[#1d4ed8] dark:text-[#58a6ff] dark:hover:text-[#79c0ff] transition-colors">Privacy Policy</a>
           </label>
-          <div class="relative">
-            <input
-              id="confirmPassword"
-              formControlName="confirmPassword"
-              [type]="showConfirmPassword ? 'text' : 'password'"
-              class="block w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-              placeholder="Confirm your password"
-            />
-            <button
-              type="button"
-              (click)="toggleConfirmPasswordVisibility()"
-              class="absolute inset-y-0 right-0 pr-3 flex items-center"
-              [attr.title]="showConfirmPassword ? 'Hide password' : 'Show password'"
-              [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'"
-            >
-              <span class="sr-only">{{ showConfirmPassword ? 'Hide password' : 'Show password' }}</span>
-            >
-              <svg *ngIf="!showConfirmPassword" class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-              </svg>
-              <svg *ngIf="showConfirmPassword" class="h-5 w-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"/>
-              </svg>
-            </button>
-          </div>
-          <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
-            <span *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Please confirm your password</span>
-            <span *ngIf="registerForm.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not match</span>
-          </div>
         </div>
-      </div>
+        <div *ngIf="registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched" class="text-sm text-red-600 dark:text-red-400">
+          You must accept the terms and conditions
+        </div>
 
-      <!-- Terms and Conditions -->
-      <div class="flex items-start">
-        <input
-          id="terms"
-          formControlName="acceptTerms"
-          type="checkbox"
-          class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 mt-1"
-        />
-        <label for="terms" class="ml-2 block text-sm text-gray-900 dark:text-gray-300">
-          I agree to the 
-          <a href="#" class="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">Terms of Service</a>
-          and 
-          <a href="#" class="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">Privacy Policy</a>
-        </label>
-      </div>
-      <div *ngIf="registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched" class="text-sm text-red-600 dark:text-red-400">
-        You must accept the terms and conditions
-      </div>
+        <!-- Submit Button -->
+        <div class="pt-6">
+          <button
+            type="submit"
+            [disabled]="isLoading || registerForm.invalid"
+            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] hover:from-[#1d4ed8] hover:to-[#1e40af] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563eb] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            <span *ngIf="!isLoading" class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <svg class="h-5 w-5 text-[#93c5fd] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+              </svg>
+            </span>
+            <span *ngIf="isLoading" class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <svg class="animate-spin h-5 w-5 text-[#93c5fd]" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </span>
+            {{ isLoading ? 'Creating account...' : 'Create account' }}
+          </button>
+        </div>
 
-      <!-- Submit Button -->
-      <div>
-        <button
-          type="submit"
-          [disabled]="isLoading || registerForm.invalid"
-          class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg"
-        >
-          <span *ngIf="!isLoading" class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <svg class="h-5 w-5 text-blue-300 group-hover:text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-            </svg>
-          </span>
-          <span *ngIf="isLoading" class="absolute left-0 inset-y-0 flex items-center pl-3">
-            <svg class="animate-spin h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-          </span>
-          {{ isLoading ? 'Creating account...' : 'Create account' }}
-        </button>
-      </div>
-
-      <!-- Login link -->
-      <div class="text-center mt-6">
-        <p class="text-sm text-gray-600 dark:text-gray-400">
-          Already have an account?
-          <a routerLink="/auth/login" class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
-            Sign in here
-          </a>
-        </p>
+        <!-- Login link -->
+        <div class="text-center pt-4">
+          <p class="text-sm text-[#656d76] dark:text-[#7d8590]">
+            Already have an account?
+            <a routerLink="/auth/login" class="font-medium text-[#2563eb] hover:text-[#1d4ed8] dark:text-[#58a6ff] dark:hover:text-[#79c0ff] transition-colors">
+              Sign in here
+            </a>
+          </p>
+        </div>
       </div>
     </form>
   </div>

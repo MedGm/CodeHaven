@@ -1,15 +1,15 @@
 <div class="max-w-4xl mx-auto space-y-6">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+  <div class="bg-[#21262d] border border-[#30363d] rounded-xl p-6">
     <div class="flex items-center space-x-3">
-      <div class="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
-        <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="p-2 bg-[#16a34a]/20 rounded-lg">
+        <svg class="h-6 w-6 text-[#16a34a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
         </svg>
       </div>
       <div>
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Code Optimization</h1>
-        <p class="text-gray-600 dark:text-gray-400">Optimize your code for performance, memory, or readability</p>
+        <h1 class="text-2xl font-bold text-[#e6edf3]">Code Optimization</h1>
+        <p class="text-[#7d8590]">Optimize your code for performance, memory, or readability</p>
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
 
       <!-- Context -->
       <div>
-        <label for="context" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="context" class="block text-sm font-medium text-[#e6edf3] mb-2">
           Context (Optional)
         </label>
         <textarea
@@ -55,13 +55,13 @@
           formControlName="context"
           rows="3"
           placeholder="Provide additional context about the code's purpose or constraints..."
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          class="w-full px-3 py-2 border border-[#30363d] rounded-md bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
         ></textarea>
       </div>
 
       <!-- Code Input -->
       <div>
-        <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="code" class="block text-sm font-medium text-[#e6edf3] mb-2">
           Code to Optimize
         </label>
         <textarea
@@ -69,10 +69,10 @@
           formControlName="code"
           rows="15"
           placeholder="Paste your code here..."
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white font-mono text-sm"
+          class="w-full px-3 py-2 border border-[#30363d] rounded-md bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent font-mono text-sm"
         ></textarea>
         <div *ngIf="optimizeForm.get('code')?.invalid && optimizeForm.get('code')?.touched" class="mt-1">
-          <p class="text-sm text-red-600 dark:text-red-400">Code is required (minimum 10 characters)</p>
+          <p class="text-sm text-red-400">Code is required (minimum 10 characters)</p>
         </div>
       </div>
 
@@ -81,7 +81,7 @@
         <button
           type="submit"
           [disabled]="optimizeForm.invalid || isLoading"
-          class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+          class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center transition-colors"
         >
           <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -94,24 +94,24 @@
   </div>
 
   <!-- Error Message -->
-  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-md p-4">
+  <div *ngIf="errorMessage" class="bg-red-900/10 border border-red-700/30 rounded-md p-4">
     <div class="flex">
       <svg class="h-5 w-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
       </svg>
-      <p class="ml-2 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+      <p class="ml-2 text-sm text-red-300">{{ errorMessage }}</p>
     </div>
   </div>
 
   <!-- Results -->
-  <div *ngIf="optimizedCode" class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+  <div *ngIf="optimizedCode" class="bg-[#0d1117] border border-[#21262d] rounded-lg p-6">
     <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Optimized Code</h2>
+      <h2 class="text-lg font-semibold text-[#e6edf3]">Optimized Code</h2>
       <div class="flex space-x-2">
         <button
           type="button"
           (click)="copyToClipboard(getSuggestedCode())"
-          class="px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-700"
+          class="px-3 py-1 text-sm text-[#e6edf3] hover:text-[#e6edf3] border border-[#30363d] bg-[#21262d] rounded hover:bg-[#30363d] transition-colors"
           aria-label="Copy optimized code to clipboard"
           title="Copy optimized code"
         >
@@ -120,7 +120,7 @@
         <button
           type="button"
           (click)="copyToClipboard(optimizedCode.response)"
-          class="px-3 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 dark:hover:bg-gray-700"
+          class="px-3 py-1 text-sm text-[#e6edf3] hover:text-[#e6edf3] border border-[#30363d] bg-[#21262d] rounded hover:bg-[#30363d] transition-colors"
           aria-label="Copy full explanation to clipboard"
           title="Copy full explanation"
         >
@@ -131,25 +131,25 @@
 
     <!-- Optimized Code Block -->
     <div *ngIf="getSuggestedCode()" class="mb-6">
-      <h3 class="text-md font-medium text-gray-900 dark:text-white mb-2">Optimized Code:</h3>
-      <div class="bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-600 overflow-hidden">
-        <pre class="whitespace-pre-wrap text-sm text-gray-900 dark:text-gray-100 p-4 font-mono leading-relaxed overflow-x-auto">{{ getSuggestedCode() }}</pre>
+      <h3 class="text-md font-medium text-[#e6edf3] mb-2">Optimized Code:</h3>
+      <div class="bg-[#161b22] rounded-lg border border-[#30363d] overflow-hidden">
+        <pre class="whitespace-pre-wrap text-sm text-[#e6edf3] p-4 font-mono leading-relaxed overflow-x-auto">{{ getSuggestedCode() }}</pre>
       </div>
     </div>
 
     <!-- Explanation -->
     <div class="prose dark:prose-invert max-w-none">
-      <h3 class="text-md font-medium text-gray-900 dark:text-white mb-2">Explanation:</h3>
-      <div class="bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-        <pre class="whitespace-pre-wrap text-sm text-gray-900 dark:text-gray-100 leading-relaxed">{{ optimizedCode.response }}</pre>
+      <h3 class="text-md font-medium text-[#e6edf3] mb-2">Explanation:</h3>
+      <div class="bg-[#161b22]/50 rounded-lg border border-[#30363d] p-4">
+        <pre class="whitespace-pre-wrap text-sm text-[#e6edf3] leading-relaxed">{{ optimizedCode.response }}</pre>
       </div>
     </div>
     
     <div class="mt-4 flex items-center justify-between">
-      <div class="text-sm text-gray-500 dark:text-gray-400">
+      <div class="text-sm text-[#7d8590]">
         Optimized on {{ getFormattedDate() }}
       </div>
-      <div *ngIf="optimizedCode.confidenceScore" class="text-sm text-gray-500 dark:text-gray-400">
+      <div *ngIf="optimizedCode.confidenceScore" class="text-sm text-[#7d8590]">
         Confidence: {{ optimizedCode.confidenceScore }}%
       </div>
     </div>

@@ -1,53 +1,54 @@
-<div class="max-w-4xl mx-auto space-y-6">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <div class="flex items-center">
-      <div class="p-3 bg-green-100 dark:bg-green-900/20 rounded-lg mr-4">
-        <svg class="h-8 w-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-        </svg>
-      </div>
-      <div>
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">AI Code Generation</h1>
-        <p class="text-gray-600 dark:text-gray-400">Generate code from natural language descriptions</p>
+<div class="min-h-screen bg-[#fafbfc] dark:bg-[#0d1117] py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="bg-[#ffffff] dark:bg-[#21262d] rounded-lg p-6 border border-[#e1e5e9] dark:border-[#30363d] shadow-sm">
+      <div class="flex items-center">
+        <div class="p-3 bg-gradient-to-r from-[#10b981]/10 to-[#059669]/10 rounded-lg mr-4">
+          <svg class="h-8 w-8 text-[#10b981] dark:text-[#34d399]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold bg-gradient-to-r from-[#10b981] to-[#059669] bg-clip-text text-transparent">AI Code Generation</h1>
+          <p class="text-[#656d76] dark:text-[#7d8590]">Generate code from natural language descriptions</p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Code Generation Form -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <form [formGroup]="generationForm" (ngSubmit)="onSubmit()" class="space-y-4">
-      <!-- Programming Language -->
-      <div>
-        <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Programming Language
-        </label>
-        <select
-          id="language"
-          formControlName="language"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-        >
-          <option value="">Select a language</option>
-          <option value="javascript">JavaScript</option>
-          <option value="typescript">TypeScript</option>
-          <option value="python">Python</option>
-          <option value="java">Java</option>
-          <option value="csharp">C#</option>
-          <option value="cpp">C++</option>
-          <option value="go">Go</option>
-          <option value="rust">Rust</option>
-          <option value="php">PHP</option>
-          <option value="ruby">Ruby</option>
-        </select>
-      </div>
+    <!-- Code Generation Form -->
+    <div class="bg-[#ffffff] dark:bg-[#21262d] rounded-lg p-6 border border-[#e1e5e9] dark:border-[#30363d] shadow-sm">
+      <form [formGroup]="generationForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <!-- Programming Language -->
+        <div>
+          <label for="language" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+            Programming Language
+          </label>
+          <select
+            id="language"
+            formControlName="language"
+            class="block w-full px-3 py-2.5 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#10b981]/20 focus:border-[#10b981] dark:focus:border-[#34d399] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] transition-all duration-200"
+          >
+            <option value="">Select a language</option>
+            <option value="javascript">JavaScript</option>
+            <option value="typescript">TypeScript</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="csharp">C#</option>
+            <option value="cpp">C++</option>
+            <option value="go">Go</option>
+            <option value="rust">Rust</option>
+            <option value="php">PHP</option>
+            <option value="ruby">Ruby</option>
+          </select>
+        </div>
 
-      <!-- Code Type -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          What do you want to generate?
-        </label>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-          <label [ngClass]="[
+        <!-- Code Type -->
+        <div>
+          <label class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+            What do you want to generate?
+          </label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <label [ngClass]="[
             'flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
             generationForm.get('codeType')?.value === 'FUNCTION' ? 'border-green-500 bg-green-50 dark:bg-green-900/20' : ''
           ]">

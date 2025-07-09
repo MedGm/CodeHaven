@@ -2,60 +2,60 @@
   <!-- Header -->
   <div class="flex items-center justify-between">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Create Code Snippet</h1>
-      <p class="text-gray-600 dark:text-gray-400">Save reusable code for quick access</p>
+      <h1 class="text-2xl font-bold text-[#e6edf3]">Create Code Snippet</h1>
+      <p class="text-[#7d8590]">Save reusable code for quick access</p>
     </div>
     <button
       routerLink="/snippets"
-      class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
+      class="px-4 py-2 text-sm font-medium text-[#e6edf3] bg-[#21262d] border border-[#30363d] rounded-md hover:bg-[#30363d] transition-colors"
     >
       Back to Snippets
     </button>
   </div>
 
   <!-- Create Form -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+  <div class="bg-[#0d1117] border border-[#21262d] rounded-lg p-6">
     <form [formGroup]="snippetForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <!-- Title -->
       <div>
-        <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="title" class="block text-sm font-medium text-[#e6edf3] mb-2">
           Title *
         </label>
         <input
           type="text"
           id="title"
           formControlName="title"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          class="block w-full px-3 py-2 border border-[#30363d] rounded-md bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
           placeholder="Enter snippet title..."
         >
-        <div *ngIf="snippetForm.get('title')?.invalid && snippetForm.get('title')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+        <div *ngIf="snippetForm.get('title')?.invalid && snippetForm.get('title')?.touched" class="mt-1 text-sm text-red-400">
           Title is required
         </div>
       </div>
 
       <!-- Description -->
       <div>
-        <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="description" class="block text-sm font-medium text-[#e6edf3] mb-2">
           Description
         </label>
         <textarea
           id="description"
           formControlName="description"
           rows="3"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          class="block w-full px-3 py-2 border border-[#30363d] rounded-md bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
           placeholder="Describe what this snippet does..."
         ></textarea>
       </div>
 
       <!-- Language Selection -->
       <div>
-        <label for="language" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="language" class="block text-sm font-medium text-[#e6edf3] mb-2">
           Programming Language *
         </label>
         <select
           id="language"
           formControlName="language"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          class="block w-full px-3 py-2 border border-[#30363d] rounded-md bg-[#0d1117] text-[#e6edf3] focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
         >
           <option value="">Select a language</option>
           <option value="javascript">JavaScript</option>
@@ -73,48 +73,48 @@
           <option value="sql">SQL</option>
           <option value="bash">Bash</option>
         </select>
-        <div *ngIf="snippetForm.get('language')?.invalid && snippetForm.get('language')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+        <div *ngIf="snippetForm.get('language')?.invalid && snippetForm.get('language')?.touched" class="mt-1 text-sm text-red-400">
           Please select a programming language
         </div>
       </div>
 
       <!-- Code -->
       <div>
-        <label for="code" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="code" class="block text-sm font-medium text-[#e6edf3] mb-2">
           Code *
         </label>
         <textarea
           id="code"
           formControlName="code"
           rows="15"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm"
+          class="block w-full px-3 py-2 border border-[#30363d] rounded-md bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent font-mono text-sm"
           placeholder="Paste your code here..."
         ></textarea>
-        <div *ngIf="snippetForm.get('code')?.invalid && snippetForm.get('code')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+        <div *ngIf="snippetForm.get('code')?.invalid && snippetForm.get('code')?.touched" class="mt-1 text-sm text-red-400">
           Code is required
         </div>
       </div>
 
       <!-- Tags -->
       <div>
-        <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="tags" class="block text-sm font-medium text-[#e6edf3] mb-2">
           Tags
         </label>
         <input
           type="text"
           id="tags"
           formControlName="tags"
-          class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          class="block w-full px-3 py-2 border border-[#30363d] rounded-md bg-[#0d1117] text-[#e6edf3] placeholder-[#7d8590] focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
           placeholder="Enter tags separated by commas (e.g., react, hooks, useEffect)"
         >
-        <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+        <div class="mt-1 text-xs text-[#7d8590]">
           Separate multiple tags with commas
         </div>
       </div>
 
       <!-- Visibility -->
       <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label class="block text-sm font-medium text-[#e6edf3] mb-2">
           Visibility
         </label>
         <div class="flex space-x-4">
@@ -123,18 +123,18 @@
               type="radio"
               formControlName="isPublic"
               [value]="true"
-              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+              class="h-4 w-4 text-[#2563eb] focus:ring-[#2563eb] border-[#30363d] bg-[#0d1117]"
             >
-            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Public</span>
+            <span class="ml-2 text-sm text-[#e6edf3]">Public</span>
           </label>
           <label class="flex items-center">
             <input
               type="radio"
               formControlName="isPublic"
               [value]="false"
-              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+              class="h-4 w-4 text-[#2563eb] focus:ring-[#2563eb] border-[#30363d] bg-[#0d1117]"
             >
-            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Private</span>
+            <span class="ml-2 text-sm text-[#e6edf3]">Private</span>
           </label>
         </div>
       </div>
@@ -144,14 +144,14 @@
         <button
           type="button"
           (click)="onCancel()"
-          class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="px-4 py-2 text-sm font-medium text-[#e6edf3] bg-[#21262d] border border-[#30363d] rounded-md hover:bg-[#30363d] transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563eb]"
         >
           Cancel
         </button>
         <button
           type="submit"
           [disabled]="snippetForm.invalid || isLoading"
-          class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+          class="px-4 py-2 text-sm font-medium text-white bg-[#2563eb] border border-transparent rounded-md hover:bg-[#1d4ed8] transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563eb] disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
         >
           <svg *ngIf="isLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -164,14 +164,14 @@
   </div>
 
   <!-- Error Message -->
-  <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+  <div *ngIf="errorMessage" class="bg-red-900/10 border border-red-700/30 rounded-lg p-4">
     <div class="flex">
       <svg class="h-5 w-5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/>
       </svg>
       <div class="ml-3">
-        <h3 class="text-sm font-medium text-red-800 dark:text-red-200">Error</h3>
-        <p class="mt-1 text-sm text-red-700 dark:text-red-300">{{ errorMessage }}</p>
+        <h3 class="text-sm font-medium text-red-300">Error</h3>
+        <p class="mt-1 text-sm text-red-400">{{ errorMessage }}</p>
       </div>
     </div>
   </div>

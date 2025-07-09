@@ -1,60 +1,61 @@
-<div class="max-w-4xl mx-auto space-y-6">
-  <!-- Header -->
-  <div class="flex items-center justify-between">
-    <div>
-      <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Edit Blog Post</h1>
-      <p class="text-gray-600 dark:text-gray-400">Update your blog post</p>
-    </div>
-    <button (click)="goBack()" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 flex items-center">
-      <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-      </svg>
-      Back to Blog
-    </button>
-  </div>
-
-  <!-- Loading State -->
-  <div *ngIf="isLoading" class="flex justify-center py-8">
-    <svg class="animate-spin h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24">
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-    </svg>
-  </div>
-
-  <!-- Edit Form -->
-  <div *ngIf="!isLoading" class="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="space-y-6">
-      <!-- Title -->
+<div class="min-h-screen bg-[#fafbfc] dark:bg-[#0d1117] py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
       <div>
-        <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Title *
-        </label>
-        <input
-          id="title"
-          formControlName="title"
-          type="text"
-          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-          placeholder="Enter blog title"
-        />
-        <div *ngIf="editForm.get('title')?.invalid && editForm.get('title')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
-          <span *ngIf="editForm.get('title')?.errors?.['required']">Title is required</span>
-          <span *ngIf="editForm.get('title')?.errors?.['minlength']">Title must be at least 5 characters</span>
-        </div>
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-[#2563eb] to-[#7c3aed] bg-clip-text text-transparent">Edit Blog Post</h1>
+        <p class="text-[#656d76] dark:text-[#7d8590] mt-1">Update your blog post</p>
       </div>
+      <button (click)="goBack()" class="text-[#2563eb] hover:text-[#1d4ed8] dark:text-[#58a6ff] dark:hover:text-[#79c0ff] flex items-center transition-colors">
+        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back to Blog
+      </button>
+    </div>
 
-      <!-- Excerpt -->
-      <div>
-        <label for="excerpt" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          Excerpt (Optional)
-        </label>
-        <textarea
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="flex justify-center py-8">
+      <svg class="animate-spin h-8 w-8 text-[#2563eb]" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    </div>
+
+    <!-- Edit Form -->
+    <div *ngIf="!isLoading" class="bg-[#ffffff] dark:bg-[#21262d] rounded-lg p-6 border border-[#e1e5e9] dark:border-[#30363d] shadow-sm">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Title -->
+        <div>
+          <label for="title" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+            Title *
+          </label>
+          <input
+            id="title"
+            formControlName="title"
+            type="text"
+            class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
+            placeholder="Enter blog title"
+          />
+          <div *ngIf="editForm.get('title')?.invalid && editForm.get('title')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
+            <span *ngIf="editForm.get('title')?.errors?.['required']">Title is required</span>
+            <span *ngIf="editForm.get('title')?.errors?.['minlength']">Title must be at least 5 characters</span>
+          </div>
+        </div>
+
+        <!-- Excerpt -->
+        <div>
+          <label for="excerpt" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
+            Excerpt (Optional)
+          </label>
+          <textarea
           id="excerpt"
           formControlName="excerpt"
           rows="3"
-          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
           placeholder="Brief description of your blog post..."
         ></textarea>
-        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Maximum 500 characters</p>
+        <p class="mt-1 text-sm text-[#656d76] dark:text-[#7d8590]">Maximum 500 characters</p>
         <div *ngIf="editForm.get('excerpt')?.invalid && editForm.get('excerpt')?.touched" class="mt-1 text-sm text-red-600 dark:text-red-400">
           <span *ngIf="editForm.get('excerpt')?.errors?.['maxlength']">Excerpt must not exceed 500 characters</span>
         </div>
@@ -62,14 +63,14 @@
 
       <!-- Cover Image URL -->
       <div>
-        <label for="coverImageUrl" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="coverImageUrl" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
           Cover Image URL (Optional)
         </label>
         <input
           id="coverImageUrl"
           formControlName="coverImageUrl"
           type="url"
-          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
           placeholder="https://example.com/image.jpg"
         />
       </div>
@@ -77,13 +78,13 @@
       <!-- Status and Reading Time Row -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label for="status" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
             Status
           </label>
           <select
             id="status"
             formControlName="status"
-            class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] transition-all duration-200"
           >
             <option value="DRAFT">Draft</option>
             <option value="PUBLISHED">Published</option>
@@ -92,7 +93,7 @@
         </div>
 
         <div>
-          <label for="readingTime" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <label for="readingTime" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
             Reading Time (minutes)
           </label>
           <input
@@ -100,7 +101,7 @@
             formControlName="readingTime"
             type="number"
             min="1"
-            class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+            class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
             placeholder="e.g. 5"
           />
         </div>
@@ -108,14 +109,14 @@
 
       <!-- Tags -->
       <div>
-        <label for="tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label for="tags" class="block text-sm font-medium text-[#24292f] dark:text-[#e6edf3] mb-2">
           Tags (Optional)
         </label>
         <input
           id="tags"
           formControlName="tags"
           type="text"
-          class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          class="block w-full px-4 py-3 border border-[#d1d9e0] dark:border-[#30363d] rounded-md focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb] dark:focus:border-[#58a6ff] bg-[#f6f8fa] dark:bg-[#0d1117] text-[#24292f] dark:text-[#e6edf3] placeholder-[#656d76] dark:placeholder-[#7d8590] transition-all duration-200"
           placeholder="Enter tags separated by commas (e.g., Angular, TypeScript, Web Dev)"
         />
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Separate tags with commas</p>
